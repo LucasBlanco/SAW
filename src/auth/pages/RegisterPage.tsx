@@ -1,0 +1,122 @@
+import { TextField } from "@material-ui/core";
+import AuthLayout from "auth/components/AuthLayout";
+import React, { useState } from "react";
+import Button from "shared/components/Button";
+import Step from "shared/components/Stepper/Step";
+import Stepper from "shared/components/Stepper/Stepper";
+import RegisterIlustration from "../../assets/sign-up.svg";
+interface Props {}
+
+const RegisterPage = (props: Props) => {
+  const [step, setStep] = useState(1);
+  return (
+    <AuthLayout
+      ilustration={RegisterIlustration}
+      title="Sign up to Vadiun"
+      subtitle="Make your dreams come true"
+    >
+      <div className="w-full flex flex-col items-center justify-center">
+        <Stepper value={step}>
+          <Step title="Account" value={1} description="Vadiun account" />
+          <Step title="Personal" value={2} description="Personal information" />
+          <Step title="Address" value={3} description="Residential address" />
+        </Stepper>
+
+        {step === 1 && (
+          <form
+            autoComplete="new-password"
+            className="flex flex-col max-w-lg mt-8 w-full"
+          >
+            <TextField
+              label="Email"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              className="bg-white"
+            />
+            <TextField
+              label="Password"
+              type="password"
+              autoComplete="new-password"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              className="bg-white"
+            />
+            <Button
+              variant="contained"
+              className="ml-auto mt-8"
+              onClick={() => setStep(2)}
+            >
+              Next <span className="ml-2">{">"}</span>
+            </Button>
+          </form>
+        )}
+        {step === 2 && (
+          <form
+            autoComplete="new-password"
+            className="flex flex-col max-w-lg mt-8 w-full"
+          >
+            <TextField
+              label="Email"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              className="bg-white"
+            />
+            <TextField
+              label="Password"
+              type="password"
+              autoComplete="new-password"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              className="bg-white"
+            />
+            <div className="flex justify-between mt-8">
+              <Button onClick={() => setStep(1)}>
+                <span className="mr-2">{"<"}</span>Back
+              </Button>
+              <Button variant="contained" onClick={() => setStep(3)}>
+                Next <span className="ml-2">{">"}</span>
+              </Button>
+            </div>
+          </form>
+        )}
+        {step === 3 && (
+          <form
+            autoComplete="new-password"
+            className="flex flex-col max-w-lg mt-8 w-full"
+          >
+            <TextField
+              label="Email"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              className="bg-white"
+            />
+            <TextField
+              label="Password"
+              type="password"
+              autoComplete="new-password"
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              className="bg-white"
+            />
+            <div className="flex justify-between mt-8">
+              <Button variant="outlined" onClick={() => setStep(2)}>
+                <span className="mr-2">{"<"}</span>Back
+              </Button>
+              <Button variant="contained" onClick={() => alert("save")}>
+                Register
+              </Button>
+            </div>
+          </form>
+        )}
+      </div>
+    </AuthLayout>
+  );
+};
+
+export default RegisterPage;

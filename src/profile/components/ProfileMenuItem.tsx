@@ -1,23 +1,27 @@
-import React, { FC } from "react";
+import React from "react";
+import { overrideTailwindClasses } from "tailwind-override";
 
 interface Props {
-  label: string;
-  isSelected: boolean;
-  onSelect: (label: string) => void;
+  icon: React.ReactNode;
+  label: React.ReactNode;
+  isSelected?: boolean;
+  value: any;
+  onClick?: () => void;
 }
 
-const ProfileMenuItem: FC<Props> = (props: Props) => {
+const ProfileMenuItem = (props: Props) => {
   return (
-    <button
-      onClick={() => props.onSelect("personal")}
-      className={
-        props.isSelected
-          ? " text-white transition duration-300 ease-in-out hover:bg-primary-400  py-5 px-4 whitespace-nowrap w-full focus:outline-none bg-primary-400"
-          : " text-white transition duration-300 ease-in-out hover:bg-primary-400  py-5 px-4 whitespace-nowrap w-full focus:outline-none"
-      }
+    <div
+      className={overrideTailwindClasses(
+        ` hover:text-primary-600 hover:bg-primary-100 soft-transition p-4 rounded-md my-2 cursor-pointer flex space-x-4 items-center ${
+          props.isSelected ? "text-primary-600 bg-primary-100" : "text-grey-700"
+        }`
+      )}
+      onClick={props.onClick}
     >
-      {props.label}
-    </button>
+      {props.icon}
+      <span className="font-semibold text-md">{props.label}</span>
+    </div>
   );
 };
 

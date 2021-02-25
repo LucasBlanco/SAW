@@ -1,5 +1,6 @@
+import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import Button from "shared/Button";
+import Button from "shared/components/Button";
 import React from "react";
 import Logo from "../../assets/logo.png";
 import SearchIcon from "@material-ui/icons/Search";
@@ -13,7 +14,9 @@ import PostAddIcon from "@material-ui/icons/PostAdd";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-interface Props {}
+interface Props {
+  toggleSidebar: () => void;
+}
 
 const StyledMenuItem = withStyles((theme) => ({
   root: {
@@ -47,8 +50,14 @@ const Header = (props: Props) => {
   };
   return (
     <>
-      <div className="shadow-md">
+      <div
+        className="shadow-lg border-b-2 border-solid border-grey-100"
+        style={{ zIndex: 510 }}
+      >
         <div className="flex justify-between px-3 text-primary items-center container h-16">
+          <button className="lg:hidden mr-4" onClick={props.toggleSidebar}>
+            <MenuIcon />
+          </button>
           <img
             src={Logo}
             width="100px"

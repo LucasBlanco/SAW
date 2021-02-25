@@ -1,49 +1,45 @@
-import AdCreate from "ad/pages/AdCreate";
-import AdPage from "ad/pages/AdPage";
-import Ads from "ad/pages/Ads";
-import MyAds from "ad/pages/MyAds";
-import LoginPage from "auth/pages/LoginPage";
+import CrudExample from "example/pages/CrudExample";
+import FormExamplePage from "forms/pages/FormExamplePage";
 import Header from "layout/components/Header";
-import Profile from "profile/pages/Profile";
+import Sidebar from "layout/components/Sidebar/Sidebar";
+import ProfilePage from "profile/pages/ProfilePage";
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
+import { useState } from "react";
+import { Switch, Route } from "react-router-dom";
 import Landing from "./Landing";
 interface Props {}
 
 const MainLayout = (props: Props) => {
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
   return (
-    <div className=" min-h-screen">
-      <Header />
-      <div style={{ height: "calc(100vh - 4rem)" }} className="overflow-auto">
-        <Switch>
-          <Route path="/main/landing">
-            <Landing />
-          </Route>
-          <Route path="/main/ads">
-            <Ads />
-          </Route>
-          <Route path="/main/profile">
-            <Profile />
-          </Route>
-          <Route path="/main/create-ad">
-            <AdCreate />
-          </Route>
-          <Route path="/main/my-ads">
-            <MyAds />
-          </Route>
-          <Route path="/main/ad-page">
-            <AdPage />
-          </Route>
-          <Route path="/main/login">
-            <LoginPage />
-          </Route>
-        </Switch>
+    <div className="min-h-screen">
+      <Header toggleSidebar={() => setIsSideBarOpen((isOpen) => !isOpen)} />
+      <div
+        style={{ height: "calc(100vh - 4rem - 2px)" }}
+        className="overflow-auto"
+      >
+        <div className="flex h-full">
+          <Sidebar isOpen={isSideBarOpen} />
+          <div
+            className="bg-grey-100 h-full w-full overflow-auto"
+            onClick={() => setIsSideBarOpen(false)}
+          >
+            <Switch>
+              <Route path="/main/landing">
+                <Landing />
+              </Route>
+              <Route path="/main/example">
+                <CrudExample />
+              </Route>
+              <Route path="/main/profile">
+                <ProfilePage />
+              </Route>
+              <Route path="/main/forms">
+                <FormExamplePage />
+              </Route>
+            </Switch>
+          </div>
+        </div>
       </div>
     </div>
   );

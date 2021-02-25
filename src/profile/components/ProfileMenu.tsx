@@ -1,30 +1,21 @@
-import React, { useState } from "react";
-import ProfileMenuItem from "./ProfileMenuItem";
+import React, { Children, FC, useEffect } from "react";
 
-export type MenuItem = "personal" | "contact" | "profile";
 interface Props {
-  menuItemSelected: MenuItem;
-  onSelect: (item: MenuItem) => void;
+  value: any;
+  onSelect: (value: any) => void;
 }
 
-const ProfileMenu = (props: Props) => {
+const ProfileMenu: FC<Props> = (props) => {
   return (
-    <div className="bg-primary-500 text-white font-bold w-64 h-full">
-      <ProfileMenuItem
-        label="Personal information"
-        onSelect={() => props.onSelect("personal")}
-        isSelected={props.menuItemSelected === "personal"}
-      />
-      <ProfileMenuItem
-        label="Contact information"
-        onSelect={() => props.onSelect("contact")}
-        isSelected={props.menuItemSelected === "contact"}
-      />
-      <ProfileMenuItem
-        label="Profile Description"
-        onSelect={() => props.onSelect("profile")}
-        isSelected={props.menuItemSelected === "profile"}
-      />
+    <div className="flex flex-col space-y-2">
+      {Children.map(props.children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, {
+            isSelected: child.props.value === props.value,
+            onClick: () => props.onSelect(child.props.value),
+          });
+        }
+      })}
     </div>
   );
 };

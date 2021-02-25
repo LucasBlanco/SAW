@@ -4,10 +4,14 @@ import "./tailwind.output.css";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { createBrowserHistory } from "history";
+import { Router } from "react-router-dom";
+
+const hist = createBrowserHistory({ basename: "/#/" });
 ReactDOM.render(
-  <React.StrictMode>
+  <Router history={hist}>
     <App />
-  </React.StrictMode>,
+  </Router>,
   document.getElementById("root")
 );
 
