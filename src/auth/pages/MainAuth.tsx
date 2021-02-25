@@ -1,3 +1,4 @@
+import { useAuth } from "auth/services/AuthService";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import ChangePasswordPage from "./ChangePasswordPage";
@@ -9,10 +10,11 @@ import VerifyEmailPage from "./VerifyEmailPage";
 interface Props {}
 
 const MainAuth = (props: Props) => {
+  const authSrv = useAuth();
   return (
     <Switch>
       <Route path="/auth/login">
-        <LoginPage />
+        <LoginPage authSrv={authSrv} />
       </Route>
       <Route path="/auth/register">
         <RegisterPage />

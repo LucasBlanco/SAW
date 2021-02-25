@@ -6,7 +6,7 @@ import React, { useContext, useEffect, useMemo, useState } from "react";
 import useAuthRepository from "./AuthRepository";
 import { createFalse } from "typescript";
 
-interface AuthContextType {
+export interface AuthContextType {
   isAuthenticated: () => boolean;
   forgotPassword: (email: string) => {};
   login: (x: LoginCredentials) => {};
@@ -28,6 +28,7 @@ export const AuthProvider = (props: any) => {
   }, []);
 
   const login = (x: LoginCredentials) => {
+    console.log("LOGIN", x);
     localStorage.setItem("token", "value");
     setIsAuthenticated(true);
     return authRepo.login(x);

@@ -10,7 +10,9 @@ const useAuthRepository = () => {
   const reloadUsers = () => {};
 
   const login = (x: { email: string; password: string }) =>
-    new Promise<{ token: string }>((resolve) => resolve({ token: "token" }));
+    new Promise<{ token: string }>((resolve) => {
+      setTimeout(() => resolve({ token: "token" }), 2000);
+    });
 
   const add = (user: User) => httpClient.post("users", user);
 
