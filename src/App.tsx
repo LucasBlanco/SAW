@@ -62,28 +62,18 @@ function App() {
             <AuthProvider>
               <AuthContext.Consumer>
                 {({ isAuthenticated }) => (
-                  <Router>
-                    <Switch>
-                      <Route
-                        path="/auth"
-                        render={(props) => <MainAuth {...props} />}
-                      ></Route>
-                      {isAuthenticated && (
-                        <>
-                          <Route
-                            path="/main"
-                            render={(props) => <MainLayout {...props} />}
-                          />
-                          <Redirect to="/main/landing" />
-                        </>
-                      )}
-                      {!isAuthenticated && (
-                        <>
-                          <Redirect to="/auth/login" />
-                        </>
-                      )}
-                    </Switch>
-                  </Router>
+                  <Switch>
+                    <Route
+                      path="/auth"
+                      render={(props) => <MainAuth {...props} />}
+                    />
+                    {!isAuthenticated && <Redirect to="/auth/login" />}
+                    <Route
+                      path="/main"
+                      render={(props) => <MainLayout {...props} />}
+                    />
+                    <Redirect to="/main/landing" />
+                  </Switch>
                 )}
               </AuthContext.Consumer>
             </AuthProvider>
