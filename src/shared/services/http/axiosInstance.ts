@@ -3,9 +3,13 @@ import environment from "environment/environment";
 
 const instance = axios.create({
   baseURL: environment.backEnd,
-  headers: localStorage.getItem("token")
-    ? { Authorization: `Bearer ${localStorage.getItem("token")}` }
-    : {},
+});
+
+instance.interceptors.request.use(function (config) {
+  const token = `Bearer ${localStorage.getItem("token")}`;
+  config.headers.Authorization = token;
+
+  return config;
 });
 
 instance.interceptors.response.use(
