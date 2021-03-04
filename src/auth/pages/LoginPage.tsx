@@ -9,6 +9,7 @@ import * as Yup from "yup";
 import { AuthContextType } from "auth/services/AuthService";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { TextField } from "formik-material-ui";
+import { Link } from "react-router-dom";
 
 interface FormSchema {
   email: string;
@@ -76,9 +77,12 @@ const LoginPage = (props: Props) => {
                 className="bg-white"
                 component={TextField}
               />
-              <span className="cursor-pointer underline text-primary-600 ml-auto">
+              <Link
+                to="/auth/forgot-password"
+                className="cursor-pointer underline text-primary-600 ml-auto"
+              >
                 Forgot Password
-              </span>
+              </Link>
               <div className="w-full my-8">
                 <Button
                   color="primary"
