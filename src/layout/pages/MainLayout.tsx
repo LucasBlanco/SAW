@@ -1,5 +1,6 @@
 import CrudExample from "example/pages/CrudExample";
 import FormExamplePage from "forms/pages/FormExamplePage";
+import FormSteppersPage from "forms/pages/FormSteppersPage";
 import Header from "layout/components/Header";
 import Sidebar from "layout/components/Sidebar/Sidebar";
 import ProfilePage from "profile/pages/ProfilePage";
@@ -34,8 +35,11 @@ const MainLayout = (props: Props) => {
               <Route path="/main/profile">
                 <ProfilePage />
               </Route>
-              <Route path="/main/forms">
+              <Route path="/main/forms/form">
                 <FormExamplePage />
+              </Route>
+              <Route path="/main/forms/steppers">
+                <FormSteppersPage />
               </Route>
             </Switch>
           </div>

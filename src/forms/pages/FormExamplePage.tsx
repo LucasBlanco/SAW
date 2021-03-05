@@ -11,14 +11,13 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import DayJsUtils from "@date-io/dayjs";
 import {
-  Checkbox,
   CheckboxWithLabel,
   RadioGroup,
   Select,
   Switch,
   TextField,
 } from "formik-material-ui";
-import { DatePicker, KeyboardDatePicker } from "formik-material-ui-pickers";
+import { KeyboardDatePicker } from "formik-material-ui-pickers";
 import PageContainer from "layout/components/PageContainer";
 import PageHeader from "layout/components/PageHeader";
 import React, { useState } from "react";

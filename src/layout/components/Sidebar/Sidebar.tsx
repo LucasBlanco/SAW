@@ -75,12 +75,18 @@ const Sidebar = (props: Props) => {
         isSelected={selectedItem === "/main/profile"}
         onClick={() => onSelection("/main/profile")}
       ></SidebarItem>
-      <SidebarItem
-        icon={<AssignmentIndIcon />}
-        label="Form"
-        isSelected={selectedItem === "/main/forms"}
-        onClick={() => onSelection("/main/forms")}
-      ></SidebarItem>
+      <SidebarItem icon={<AssignmentIndIcon />} label="Form">
+        <SidebarItem
+          label="Form example"
+          isSelected={selectedItem === "/main/forms/form"}
+          onClick={() => onSelection("/main/forms/form")}
+        ></SidebarItem>
+        <SidebarItem
+          label="Steppers"
+          isSelected={selectedItem === "/main/forms/steppers"}
+          onClick={() => onSelection("/main/forms/steppers")}
+        ></SidebarItem>
+      </SidebarItem>
     </div>
   );
 };
