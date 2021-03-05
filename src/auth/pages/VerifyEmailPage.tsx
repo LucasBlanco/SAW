@@ -3,12 +3,24 @@ import AuthLayout from "auth/components/AuthLayout";
 import React, { useEffect, useState } from "react";
 import VerifyEmailIlustration from "../../assets/verify-email.svg";
 import CheckIcon from "@material-ui/icons/Check";
+import { AuthContextType } from "auth/services/AuthService";
+import { useLocation } from "react-router-dom";
+import { httpClient } from "shared/services/http/httpClient";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 interface Props {}
 
 const VerifyEmailPage = (props: Props) => {
   const [isLoading, setIsLoading] = useState(true);
+  const params = useQuery();
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 2000);
+    let callback = params.get("callback")!;
+    let signature = params.get("signature")!;
+    httpClient.post(callback + "&signature=" + signature).then(() => {
+      setIsLoading(false);
+    });
   }, []);
   return (
     <AuthLayout

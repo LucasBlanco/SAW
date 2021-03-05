@@ -20,7 +20,14 @@ const useAuthRepository = () => {
 
   const edit = (user: User) => httpClient.put("users/" + user.id, user);
 
-  const forgotPassword = (email: string) => console.log("mail enviado");
+  const forgotPassword = async (email: string) => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        console.log("mail enviado a " + email);
+        resolve();
+      }, 2000);
+    });
+  };
 
   return {
     users,

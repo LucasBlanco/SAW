@@ -20,7 +20,7 @@ const MainAuth = (props: Props) => {
         <RegisterPage />
       </Route>
       <Route path="/auth/forgot-password">
-        <ForgotPasswordPage />
+        <ForgotPasswordPage authSrv={authSrv} />
       </Route>
       <Route path="/auth/change-password">
         <ChangePasswordPage />
