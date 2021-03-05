@@ -29,6 +29,7 @@ import {
   Autocomplete,
   AutocompleteRenderInputParams,
 } from "formik-material-ui-lab";
+import { MUIFileUpload } from "shared/components";
 
 const ExampleSchema = Yup.object().shape({
   email: Yup.string()
@@ -39,6 +40,7 @@ const ExampleSchema = Yup.object().shape({
     .min(4, "La contraseña debe tener como minimo 4 caracteres"),
   terms: Yup.bool(),
   gender: Yup.string(),
+  picture: Yup.mixed().required("La foto es requerida"),
   birthdate: Yup.mixed().test(
     "oltherThan18",
     "Must be over 18 years old",
@@ -109,6 +111,11 @@ const FormExamplePage = (props: Props) => {
                   name="terms"
                   color="primary"
                   Label={{ label: "Accept terms and conditions" }}
+                />
+                <Field
+                  component={MUIFileUpload}
+                  name="picture"
+                  color="primary"
                 />
                 <Field component={RadioGroup} name="gender">
                   <FormControlLabel
