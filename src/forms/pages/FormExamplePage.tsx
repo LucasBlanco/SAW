@@ -8,7 +8,7 @@ import {
   TextField as MUITextField,
 } from "@material-ui/core";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { Field, Form, Formik, FormikHelpers } from "formik";
+import { Field, FieldArray, Form, Formik, FormikHelpers } from "formik";
 import DayJsUtils from "@date-io/dayjs";
 import {
   CheckboxWithLabel,
@@ -29,7 +29,7 @@ import {
   Autocomplete,
   AutocompleteRenderInputParams,
 } from "formik-material-ui-lab";
-import { MUIFileUpload } from "shared/components";
+import { FormRepeater, MUIFileUpload } from "shared/components";
 
 const ExampleSchema = Yup.object().shape({
   email: Yup.string()
@@ -48,6 +48,7 @@ const ExampleSchema = Yup.object().shape({
       return !value && (value as Dayjs).isBefore(dayjs().add(-18, "years"));
     }
   ),
+  repeat: Yup.array(),
 });
 interface Props {}
 
@@ -67,6 +68,7 @@ const FormExamplePage = (props: Props) => {
     enabled: false,
     birthdate: dayjs(),
     film: "",
+    repeat: [""],
   };
 
   const submit = async (
@@ -89,9 +91,9 @@ const FormExamplePage = (props: Props) => {
           validationSchema={ExampleSchema}
           onSubmit={submit}
         >
-          {({ submitForm, touched, errors }) => (
+          {({ submitForm, touched, errors, values }) => (
             <div className="flex flex-col">
-              <Form className="grid grid-cols-2 gap-8">
+              <Form className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <Field
                   name="email"
                   label="Email"
@@ -114,6 +116,7 @@ const FormExamplePage = (props: Props) => {
                 />
                 <Field
                   component={MUIFileUpload}
+                  className="aspect-w-3 aspect-h-1 "
                   name="picture"
                   color="primary"
                 />
@@ -178,6 +181,34 @@ const FormExamplePage = (props: Props) => {
                     />
                   )}
                 />
+                <div>
+                  <FieldArray
+                    name="repeat"
+                    render={(arrayHelpers) => (
+                      <FormRepeater
+                        arrayHelpers={arrayHelpers}
+                        createField={() => ""}
+                      >
+                        {values.repeat.map((value, index) => (
+                          <>
+                            <Field
+                              name={`repeat.${index}`}
+                              label={`Repeat ${index + 1}`}
+                              variant="outlined"
+                              component={TextField}
+                            />
+                            <Field
+                              name={`repeat.${index}`}
+                              label={`Repeat ${index + 1}`}
+                              variant="outlined"
+                              component={TextField}
+                            />
+                          </>
+                        ))}
+                      </FormRepeater>
+                    )}
+                  />
+                </div>
               </Form>
               <Button
                 variant="contained"
@@ -204,6 +235,7 @@ interface FormSchema {
   enabled: boolean;
   birthdate: Dayjs;
   film: any;
+  repeat: string[];
 }
 
 export default FormExamplePage;

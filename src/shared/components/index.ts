@@ -6,3 +6,4 @@ export { default as Chip } from "./Chip";
 export { default as Button } from "./Button";
 export { default as Tabs } from "./Tabs";
 export { default as MUIFileUpload } from "./MUIFileUpload";
+export { default as FormRepeater } from "./FormRepeater";

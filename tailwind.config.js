@@ -14,6 +14,7 @@ module.exports = {
   },
   theme: {
     colors: {
+      red: colors.red,
       primary: {
         50: "#f5f3ff",
         100: "#ede9fe",
@@ -69,5 +70,5 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [require("@tailwindcss/aspect-ratio")],
 };

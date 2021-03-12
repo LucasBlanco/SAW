@@ -6,25 +6,32 @@ import { FieldProps, FormikProps } from "formik";
 import { faCamera, faEdit, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from ".";
+import { overrideTailwindClasses } from "tailwind-override";
 
-function MUIFileUpload(props: FieldProps) {
+function MUIFileUpload(props: FieldProps & { className?: string }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const { field, form } = props;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file: File = e.currentTarget.files![0];
-    form.setFieldValue(field.name, file);
+    if (e.currentTarget.files && e.currentTarget.files.length >= 1) {
+      const file: File = e.currentTarget.files[0];
+      form.setFieldValue(field.name, file);
+    }
+  };
+
+  const processCustomClassName = () => {
+    if (!props.className) {
+      return `aspect-w-2 aspect-h-1`;
+    }
+    const addAspectW = !props.className.includes("aspect-w");
+    const addAspectH = !props.className.includes("aspect-h");
+    return `${props.className} ${addAspectW && "aspect-w-2"} ${
+      addAspectH && "aspect-h-1"
+    }`;
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
+    <div>
       <input
         ref={inputRef}
         style={{ display: "none" }}
@@ -33,31 +40,35 @@ function MUIFileUpload(props: FieldProps) {
         onChange={(o) => handleChange(o)}
       />
       <div
-        className={`w-32 h-32 bg-grey-100 rounded-md flex items-center justify-center relative ${
-          field.value ? "bg-cover bg-center" : "bg-grey-100"
-        }`}
-        style={
-          field.value
-            ? {
-                backgroundImage: `url(${URL.createObjectURL(field.value)})`,
-              }
-            : {}
-        }
+        className={overrideTailwindClasses(
+          `bg-grey-100 rounded-md flex items-center justify-center relative ${processCustomClassName()} `
+        )}
       >
-        <Button
-          variant="outlined"
-          shape="circle"
-          className="absolute w-10 h-10 -top-3 -right-3 shadow-md bg-white"
-          onClick={() => inputRef.current?.click()}
+        <div
+          style={{ left: "calc( 100% - 2rem)", top: "-1rem" }}
+          className="absolute w-10 h-10  z-10"
         >
-          <FontAwesomeIcon icon={faPen} />
-        </Button>
-        <FontAwesomeIcon
-          className={`text-grey-300 text-5xl ${
-            field.value ? "invisible" : "visible"
-          }`}
-          icon={faCamera}
-        />
+          <Button
+            variant="outlined"
+            shape="circle"
+            type="button"
+            className="shadow-md bg-white"
+            onClick={() => inputRef.current?.click()}
+          >
+            <FontAwesomeIcon icon={faPen} />
+          </Button>
+        </div>
+        {field.value ? (
+          <img
+            src={URL.createObjectURL(field.value)}
+            className="object-cover rounded-md"
+          />
+        ) : (
+          <FontAwesomeIcon
+            className={`text-grey-300 text-5xl m-auto`}
+            icon={faCamera}
+          />
+        )}
       </div>
       {form.errors[field.name] && (
         <p style={{ color: "red" }}>{form.errors[field.name]}</p>

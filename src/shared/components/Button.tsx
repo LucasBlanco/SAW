@@ -9,6 +9,7 @@ interface Props {
   shape?: "circle" | "rounded" | "default";
   isLoading?: boolean;
   color?: string;
+  type?: "button" | "submit";
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
@@ -20,6 +21,7 @@ const Button = ({
   shape = "default",
   color = "primary",
   isLoading = false,
+  type = "button",
   onClick,
 }: Props) => {
   const baseStyle =
@@ -57,6 +59,7 @@ const Button = ({
       className={overrideTailwindClasses(
         `${baseStyle} ${classes[variant]} ${shapes[shape]} ${className}`
       )}
+      type={type}
     >
       {children}
       {isLoading && (
