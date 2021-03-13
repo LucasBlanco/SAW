@@ -14,19 +14,7 @@ module.exports = {
   },
   theme: {
     colors: {
-      red: colors.red,
-      primary: {
-        50: "#f5f3ff",
-        100: "#ede9fe",
-        200: "#ddd6fe",
-        300: "#c4b5fd",
-        400: "#a78bfa",
-        500: "#8b5cf6",
-        600: "#7c3aed",
-        700: "#6d28d9",
-        800: "#5b21b6",
-        900: "#4c1d95",
-      },
+      primary: colors.lightBlue,
       secondary: {
         50: "#f0f9ff",
         100: "#e0f2fe",
@@ -39,20 +27,16 @@ module.exports = {
         800: "#075985",
         900: "#0c4a6e",
       },
-      white: "#fff",
-      grey: {
-        50: "#f9fafb",
-        100: "#f3f4f6",
-        200: "#e5e7eb",
-        300: "#d1d5db",
-        400: "#9ca3af",
-        500: "#6b7280",
-        600: "#4b5563",
-        700: "#374151",
-        800: "#1f2937",
-        900: "#111827",
-      },
-      black: "#000",
+      black: colors.black,
+      white: colors.white,
+      gray: colors.blueGray,
+      indigo: colors.indigo,
+      red: colors.rose,
+      yellow: colors.amber,
+      green: colors.teal,
+      teal: colors.teal,
+      purple: colors.purple,
+      blue: colors.lightBlue
     },
     extend: {
       backgroundImage: (theme) => ({

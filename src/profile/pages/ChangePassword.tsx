@@ -1,5 +1,6 @@
 import TextField from "@material-ui/core/TextField";
 import React from "react";
+import {Button} from "../../shared/components";
 
 interface Props {}
 
@@ -34,6 +35,7 @@ const ChangePassword = (props: Props) => {
           fullWidth
           className="bg-white"
         />
+
       </form>
     </div>
   );

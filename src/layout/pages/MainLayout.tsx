@@ -8,6 +8,7 @@ import React from "react";
 import { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import Landing from "./Landing";
+import ButtonsExample from "../../example/pages/ButtonsExample";
 interface Props {}
 
 const MainLayout = (props: Props) => {
@@ -22,7 +23,7 @@ const MainLayout = (props: Props) => {
         <div className="flex h-full">
           <Sidebar isOpen={isSideBarOpen} />
           <div
-            className="bg-grey-100 h-full w-full overflow-auto"
+            className="bg-gray-100 h-full w-full overflow-auto"
             onClick={() => setIsSideBarOpen(false)}
           >
             <Switch>
@@ -40,6 +41,9 @@ const MainLayout = (props: Props) => {
               </Route>
               <Route path="/main/forms/steppers">
                 <FormSteppersPage />
+              </Route>
+              <Route path="/main/forms/buttons">
+                <ButtonsExample />
               </Route>
             </Switch>
           </div>

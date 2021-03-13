@@ -46,7 +46,7 @@ const ForgotPasswordPage = (props: Props) => {
             "w-full transition" + (successEmailEmition ? " animate-shrink" : "")
           }
         >
-          <p className="font-bold text-grey-500">
+          <p className="font-bold text-gray-500">
             Enter you email to reset your password
           </p>
 

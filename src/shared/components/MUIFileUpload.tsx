@@ -41,7 +41,7 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
       />
       <div
         className={overrideTailwindClasses(
-          `bg-grey-100 rounded-md flex items-center justify-center relative ${processCustomClassName()} `
+          `bg-gray-100 rounded-md flex items-center justify-center relative ${processCustomClassName()} `
         )}
       >
         <div
@@ -65,7 +65,7 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
           />
         ) : (
           <FontAwesomeIcon
-            className={`text-grey-300 text-5xl m-auto`}
+            className={`text-gray-300 text-5xl m-auto`}
             icon={faCamera}
           />
         )}

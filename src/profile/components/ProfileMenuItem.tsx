@@ -14,7 +14,7 @@ const ProfileMenuItem = (props: Props) => {
     <div
       className={overrideTailwindClasses(
         ` hover:text-primary-600 hover:bg-primary-100 soft-transition p-4 rounded-md my-2 cursor-pointer flex space-x-4 items-center ${
-          props.isSelected ? "text-primary-600 bg-primary-100" : "text-grey-700"
+          props.isSelected ? "text-primary-600 bg-primary-100" : "text-gray-700"
         }`
       )}
       onClick={props.onClick}

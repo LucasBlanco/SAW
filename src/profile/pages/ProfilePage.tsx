@@ -33,22 +33,22 @@ const ProfilePage = (props: Props) => {
             ></div>
             <div className="overflow-hidden">
               <h1 className="font-bold">James Jones</h1>
-              <h1 className="text-grey-400 ellipsis">james.jones@gmail.com</h1>
+              <h1 className="text-gray-400 ellipsis">james.jones@gmail.com</h1>
             </div>
           </div>
           <div className="flex justify-between mt-8">
             <span>Email:</span>
-            <span className="text-grey-400 ellipsis">
+            <span className="text-gray-400 ellipsis">
               james.jones@gmail.com
             </span>
           </div>
           <div className="flex justify-between mt-2">
             <span>Phone:</span>
-            <span className="text-grey-400">20703041</span>
+            <span className="text-gray-400">20703041</span>
           </div>
           <div className="flex justify-between mt-2">
             <span>Location:</span>
-            <span className="text-grey-400">Buenos aires</span>
+            <span className="text-gray-400">Buenos aires</span>
           </div>
           <div className="mt-8">
             <ProfileMenu
@@ -79,9 +79,9 @@ const ProfilePage = (props: Props) => {
           </div>
         </div>
         <div className="flex-grow rounded-md bg-white">
-          <div className="flex justify-between py-4 px-8 items-center border-solid border-grey-100 border-b-4">
+          <div className="flex justify-between py-4 px-8 items-center border-solid border-gray-100 border-b-4">
             <h1 className="font-bold">Change password</h1>
-            <Button variant="contained">Save Changes</Button>
+            <Button variant="light" color="blue">Save Changes</Button>
           </div>
           <div className="p-12">
             {menuItemSelected === 3 && <ChangePassword />}

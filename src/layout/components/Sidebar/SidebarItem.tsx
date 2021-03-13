@@ -30,7 +30,7 @@ const SidebarItem: FC<Props> = (props) => {
       <div
         className={
           "flex m-4 hover:text-primary-600 cursor-pointer items-center " +
-          (props.isSelected ? "text-primary-600" : "text-grey-500")
+          (props.isSelected ? "text-primary-600" : "text-gray-500")
         }
         onClick={onClick}
       >

@@ -86,6 +86,11 @@ const Sidebar = (props: Props) => {
           isSelected={selectedItem === "/main/forms/steppers"}
           onClick={() => onSelection("/main/forms/steppers")}
         ></SidebarItem>
+        <SidebarItem
+            label="Buttons"
+            isSelected={selectedItem === "/main/forms/buttons"}
+            onClick={() => onSelection("/main/forms/buttons")}
+        ></SidebarItem>
       </SidebarItem>
     </div>
   );

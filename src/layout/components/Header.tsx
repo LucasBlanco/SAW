@@ -51,7 +51,7 @@ const Header = (props: Props) => {
   return (
     <>
       <div
-        className="shadow-lg border-b-2 border-solid border-grey-100"
+        className="shadow-lg border-b-2 border-solid border-gray-100"
         style={{ zIndex: 510 }}
       >
         <div className="flex justify-between px-3 text-primary items-center container h-16">
@@ -67,7 +67,7 @@ const Header = (props: Props) => {
           <div className="relative mr-auto ml-10 hidden md:inline-flex">
             <input
               type="text"
-              className="rounded-full bg-grey-100 border-none outline-none h-8 p-4 pl-12 w-full"
+              className="rounded-full bg-gray-100 border-none outline-none h-8 p-4 pl-12 w-full"
             />
             <SearchIcon className="absolute left-3 top-1" />
           </div>
