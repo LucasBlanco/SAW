@@ -13,14 +13,14 @@ const ProfileMenuItem = (props: Props) => {
   return (
     <div
       className={overrideTailwindClasses(
-        ` hover:text-primary-600 hover:bg-primary-100 soft-transition p-4 rounded-md my-2 cursor-pointer flex space-x-4 items-center ${
-          props.isSelected ? "text-primary-600 bg-primary-100" : "text-gray-700"
+        ` hover:text-primary-500 hover:bg-gray-100 soft-transition p-4 rounded-md my-2 cursor-pointer flex space-x-4 items-center ${
+          props.isSelected ? "text-primary-500 bg-gray-100" : "text-gray-500"
         }`
       )}
       onClick={props.onClick}
     >
       {props.icon}
-      <span className="font-semibold text-md">{props.label}</span>
+      <span className="font-semibold text-xs">{props.label}</span>
     </div>
   );
 };

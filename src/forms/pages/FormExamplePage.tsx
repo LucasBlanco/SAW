@@ -30,6 +30,7 @@ import {
   AutocompleteRenderInputParams,
 } from "formik-material-ui-lab";
 import { FormRepeater, MUIFileUpload } from "shared/components";
+import Card from "../../shared/components/Card/Card";
 
 const ExampleSchema = Yup.object().shape({
   email: Yup.string()
@@ -86,6 +87,9 @@ const FormExamplePage = (props: Props) => {
     <>
       <PageHeader title="Forms" subtitle="Copy and paste form example" />
       <PageContainer>
+        <Card className="w-full">
+          <div className="p-8">
+
         <Formik
           initialValues={initialValues}
           validationSchema={ExampleSchema}
@@ -221,6 +225,10 @@ const FormExamplePage = (props: Props) => {
             </div>
           )}
         </Formik>
+          </div>
+
+        </Card>
+
       </PageContainer>
     </>
   );

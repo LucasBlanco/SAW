@@ -9,6 +9,7 @@ interface Props {
   isSelected?: boolean;
   isOpen?: boolean;
   onChildOpened?: (x: boolean) => void;
+  showCollapsedSidebar: boolean
 }
 
 const SidebarItem: FC<Props> = (props) => {
@@ -18,6 +19,7 @@ const SidebarItem: FC<Props> = (props) => {
     setIsOpen((open) => !open);
     props.onClick && props.onClick();
   };
+
 
   useEffect(() => {
     if (props.isOpen !== undefined) {
@@ -29,34 +31,38 @@ const SidebarItem: FC<Props> = (props) => {
     <>
       <div
         className={
-          "flex m-4 hover:text-primary-600 cursor-pointer items-center " +
-          (props.isSelected ? "text-primary-600" : "text-gray-500")
+          "flex px-6 py-2 hover:text-blueGray-200 cursor-pointer items-center " +
+          (props.isSelected ? "text-blueGray-200" : "text-blueGray-500")
         }
         onClick={onClick}
+        style={props.isSelected ? {backgroundColor:"#1a1a27"} : {}}
       >
         {props.icon ? (
-          <div className="w-4">{props.icon}</div>
+          <div className={props.showCollapsedSidebar ? "mx-auto" :"w-4 hover:text-primary-600 "}>{props.icon}</div>
         ) : (
           <FiberManualRecordIcon style={{ width: 8 }} />
         )}
-        <h1 className="ml-4 text-md">{props.label}</h1>
+        <h1 className={props.showCollapsedSidebar ? "hidden" :"ml-4 text-xs"}>{props.label}</h1>
 
         {isOpen
-          ? props.children && (
+          ? props.children && !props.showCollapsedSidebar && (
               <ExpandMoreIcon style={{ width: 20, marginLeft: "auto" }} />
             )
-          : props.children && (
+          : props.children && !props.showCollapsedSidebar && (
               <NavigateNextIcon style={{ width: 20, marginLeft: "auto" }} />
             )}
       </div>
-      <div
-        className="pl-8 transition-all duration-500 ease-in-out overflow-hidden"
-        style={{ maxHeight: isOpen ? 500 : 0 }}
-      >
-        {props.children}
-      </div>
+        {
+            !props.showCollapsedSidebar ? (<div
+                className="ml-8 transition-all duration-500 ease-in-out overflow-hidden"
+                style={{ maxHeight: isOpen ? 500 : 0 }}
+            >
+                {props.children}
+            </div>) : null
+        }
+
     </>
   );
-};
+}
 
 export default SidebarItem;

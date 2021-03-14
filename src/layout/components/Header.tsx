@@ -51,10 +51,10 @@ const Header = (props: Props) => {
   return (
     <>
       <div
-        className="shadow-lg border-b-2 border-solid border-gray-100"
+        className="flex flex-grow shadow-lg border-b-2 border-solid border-gray-100 bg-white"
         style={{ zIndex: 510 }}
       >
-        <div className="flex justify-between px-3 text-primary items-center container h-16">
+        <div className="flex flex-grow justify-between px-3 text-primary items-center container h-16">
           <button className="lg:hidden mr-4" onClick={props.toggleSidebar}>
             <MenuIcon />
           </button>

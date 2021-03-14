@@ -13,6 +13,8 @@ import PageContainer from "../../layout/components/PageContainer";
 import CreateExample from "./CreateExample";
 import EditExample from "./EditExample";
 import {AddAlarm} from "@material-ui/icons";
+import Card from "../../shared/components/Card/Card";
+import CardHeader from "../../shared/components/Card/CardHeader";
 
 
 const ButtonsExample = () => {
@@ -23,46 +25,12 @@ const ButtonsExample = () => {
             <PageHeader
                 title="Examples"
             />
+                    <Card>
+                        <div className="p-6">
 
-                <PageContainer>
-                    <div className="flex flex-row">
-                        <Button variant="contained" color="green" className="mr-2"> Green </Button>
-                        <Button variant="contained" color="red" className="mr-2"> Red </Button>
-                        <Button variant="contained" color="blue" className="mr-2"> Blue </Button>
-                        <Button variant="contained" color="yellow" className="mr-2"> Orange </Button>
-                    </div>
-                    <div className="flex flex-row mt-5">
-                        <Button variant="light" color="green" className="mr-2"> Green </Button>
-                        <Button variant="light" color="red" className="mr-2"> Red </Button>
-                        <Button variant="light" color="blue" className="mr-2"> Blue </Button>
-                        <Button variant="light" color="yellow" className="mr-2"> Orange </Button>
+                        </div>
+                    </Card>
 
-                    </div>
-                    <div className="flex flex-row mt-5">
-                        <Button variant="outlined" color="green" className="mr-2"> Green </Button>
-                        <Button variant="outlined" color="red" className="mr-2"> Red </Button>
-                        <Button variant="outlined" color="blue" className="mr-2"> Blue </Button>
-                        <Button variant="outlined" color="yellow" className="mr-2"> Orange </Button>
-                    </div>
-                    <div className="flex flex-row mt-5">
-                        <Button variant="contained" color="green" className="mr-2" isLoading={true}> Green </Button>
-                        <Button variant="light" color="red" className="mr-2" isLoading={true}> Red </Button>
-                        <Button variant="outlined" color="blue" className="mr-2" isLoading={true}> Blue </Button>
-                        <Button variant="text" color="yellow" className="mr-2" isLoading={true}> Orange </Button>
-                    </div>
-                    <div className="flex flex-row mt-5">
-                        <Button variant="contained" color="green" className="mr-2" disabled={true}> Green </Button>
-                        <Button variant="light" color="red" className="mr-2" disabled={true}> Red </Button>
-                        <Button variant="outlined" color="blue" className="mr-2" disabled={true}> Blue </Button>
-                        <Button variant="text" color="yellow" className="mr-2" disabled={true}> Orange </Button>
-                    </div>
-                    <div className="flex flex-row mt-5">
-                        <Button variant="contained" color="green" className="mr-2" ><AddAlarm className="mr-1"/> Green </Button>
-                        <Button variant="light" color="red" className="mr-2" > <AddAlarm className="mr-1"/> Red </Button>
-                        <Button variant="outlined" color="blue" className="mr-2" ><AddAlarm className="mr-1"/> Blue </Button>
-                        <Button variant="text" color="yellow" className="mr-2" ><AddAlarm className="mr-1"/> Orange </Button>
-                    </div>
-                </PageContainer>
 
         </>
 
