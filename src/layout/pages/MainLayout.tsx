@@ -54,11 +54,12 @@ const MainLayout = (props: Props) => {
                   </div>
 
                   <div
-                      className="bg-gray-100 h-full w-full overflow-auto"
+                      className="h-full w-full overflow-auto"
                       onClick={() => setIsSideBarOpen(false)}
+                      style={{backgroundColor: "#eaedf5"}}
                   >
                       <Header toggleSidebar={() => setIsSideBarOpen((isOpen) => !isOpen)} />
-                      <div className="bg-gray">
+                      <div className="bg-blueGray-100">
 
                       </div>
                       <Switch>

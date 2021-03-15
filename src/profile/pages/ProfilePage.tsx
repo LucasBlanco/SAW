@@ -23,7 +23,7 @@ const ProfilePage = (props: Props) => {
 
   return (
     <>
-      <PageHeader title="Profile"/>
+      <PageHeader title="Profile" subtitle="Example profile"/>
       <PageContainer>
       <Card className="md:w-1/3 2xl:w-1/4">
         <div className="p-8">
