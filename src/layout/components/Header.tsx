@@ -54,16 +54,10 @@ const Header = (props: Props) => {
         className="flex flex-grow shadow-lg border-b-2 border-solid border-gray-100 bg-white"
         style={{ zIndex: 510 }}
       >
-        <div className="flex flex-grow justify-between px-3 text-primary items-center container h-16">
+        <div className="flex flex-grow justify-between px-3 text-primary items-center h-16">
           <button className="lg:hidden mr-4" onClick={props.toggleSidebar}>
             <MenuIcon />
           </button>
-          <img
-            src={Logo}
-            width="100px"
-            className="cursor-pointer"
-            onClick={() => history.push("/main/landing")}
-          />
           <div className="relative mr-auto ml-10 hidden md:inline-flex">
             <input
               type="text"

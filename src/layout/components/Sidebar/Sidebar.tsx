@@ -16,8 +16,6 @@ import {
 
 interface Props {
   keepCollapsed: boolean
-  collapseSidebar: any
-  expandSidebar: any
   showCollapsedSidebar: boolean
   setShowCollapsedSidebar: any
 }
@@ -35,7 +33,7 @@ const SidebarSection = ({titulo, showCollapsedSidebar}: PropsSidebarSection) => 
   )
 }
 
-const Sidebar = ({keepCollapsed, collapseSidebar, expandSidebar, showCollapsedSidebar, setShowCollapsedSidebar}: Props) => {
+const Sidebar = ({keepCollapsed, showCollapsedSidebar, setShowCollapsedSidebar}: Props) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isMouseOver, setIsMouseOver] = useState(false)
   const history = useHistory();
@@ -103,8 +101,7 @@ const Sidebar = ({keepCollapsed, collapseSidebar, expandSidebar, showCollapsedSi
           isSelected={selectedItem === "/main/landing2"}
           onClick={() => onSelection("/main/landing2")}
           showCollapsedSidebar={showCollapsedSidebar}
-
-        ></SidebarItem>
+        />
         <SidebarItem
           icon={<AssignmentIndIcon />}
           label="Landing"
@@ -117,14 +114,14 @@ const Sidebar = ({keepCollapsed, collapseSidebar, expandSidebar, showCollapsedSi
             onClick={() => onSelection("/main/landing4")}
             showCollapsedSidebar={showCollapsedSidebar}
 
-          ></SidebarItem>
+          />
           <SidebarItem
             label="Landing"
             isSelected={selectedItem === "/main/landing5"}
             onClick={() => onSelection("/main/landing5")}
             showCollapsedSidebar={showCollapsedSidebar}
 
-          ></SidebarItem>
+          />
         </SidebarItem>
       </SidebarItem>
       <SidebarSection titulo="CUSTOM" showCollapsedSidebar={showCollapsedSidebar}
@@ -137,7 +134,7 @@ const Sidebar = ({keepCollapsed, collapseSidebar, expandSidebar, showCollapsedSi
         onClick={() => onSelection("/main/example")}
           showCollapsedSidebar={showCollapsedSidebar}
 
-      ></SidebarItem>
+      />
       <SidebarItem
           icon={<FontAwesomeIcon icon={faUserAstronaut} size="1x" />}
         label="Profile"
@@ -145,7 +142,7 @@ const Sidebar = ({keepCollapsed, collapseSidebar, expandSidebar, showCollapsedSi
         onClick={() => onSelection("/main/profile")}
           showCollapsedSidebar={showCollapsedSidebar}
 
-      ></SidebarItem>
+      />
       <SidebarItem
           icon={<FontAwesomeIcon icon={faUserAstronaut} size="1x" />}
           label="Form"
@@ -158,21 +155,21 @@ const Sidebar = ({keepCollapsed, collapseSidebar, expandSidebar, showCollapsedSi
           onClick={() => onSelection("/main/forms/form")}
           showCollapsedSidebar={showCollapsedSidebar}
 
-        ></SidebarItem>
+        />
         <SidebarItem
           label="Steppers"
           isSelected={selectedItem === "/main/forms/steppers"}
           onClick={() => onSelection("/main/forms/steppers")}
           showCollapsedSidebar={showCollapsedSidebar}
 
-        ></SidebarItem>
+        />
         <SidebarItem
             label="Buttons"
             isSelected={selectedItem === "/main/forms/buttons"}
             onClick={() => onSelection("/main/forms/buttons")}
             showCollapsedSidebar={showCollapsedSidebar}
 
-        ></SidebarItem>
+        />
       </SidebarItem>
     </div>
       </>

@@ -6,18 +6,21 @@ import Sidebar from "layout/components/Sidebar/Sidebar";
 import ProfilePage from "profile/pages/ProfilePage";
 import React from "react";
 import { useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import {Switch, Route, useHistory} from "react-router-dom";
 import Landing from "./Landing";
 import ButtonsExample from "../../example/pages/ButtonsExample";
 import {Button} from "../../shared/components";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDoubleLeft, faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
+import Logo from "../../assets/logo.png";
+import SidebarHeader from "../components/Sidebar/SidebarHeader";
 interface Props {}
 
 const MainLayout = (props: Props) => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
     const [keepCollapsed, setKeepCollapsed] = useState(false)
     const [showCollapsedSidebar, setShowCollapsedSidebar] = useState(false)
+
     const collapseSidebar = () => {
         setKeepCollapsed(true)
         setShowCollapsedSidebar(true)
@@ -35,19 +38,16 @@ const MainLayout = (props: Props) => {
           >
               <div className="flex h-full">
                   <div>
-                      <div className="h-16 bg-blueGray-900 flex justify-around items-center lg:flex sm:hidden" style={{backgroundColor:"#1a1a27"}}>
-                          <h1 className={showCollapsedSidebar ? "hidden" : "font-black text-lg text-gray-50"} >METRONIC</h1>
 
-                          <button className="text-primary-600 focus:outline-none" onClick={() => keepCollapsed ? expandSidebar() : collapseSidebar()}>
-                              {keepCollapsed ? <FontAwesomeIcon icon={faAngleDoubleRight} size="2x"/>
-                                  : <FontAwesomeIcon icon={faAngleDoubleLeft} size="2x"/>}
-                          </button>
-
-                      </div>
-                      <Sidebar
+                      <SidebarHeader
                           keepCollapsed={keepCollapsed}
                           collapseSidebar={collapseSidebar}
                           expandSidebar={expandSidebar}
+                          showCollapsedSidebar={showCollapsedSidebar}
+                          logo={Logo}
+                      />
+                      <Sidebar
+                          keepCollapsed={keepCollapsed}
                           showCollapsedSidebar={showCollapsedSidebar}
                           setShowCollapsedSidebar={setShowCollapsedSidebar}
                       />
