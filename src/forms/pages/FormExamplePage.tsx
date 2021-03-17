@@ -17,7 +17,7 @@ import {
   Switch,
   TextField,
 } from "formik-material-ui";
-import { KeyboardDatePicker } from "formik-material-ui-pickers";
+import {KeyboardDatePicker, KeyboardTimePicker} from "formik-material-ui-pickers";
 import PageContainer from "layout/components/PageContainer";
 import PageHeader from "layout/components/PageHeader";
 import React, { useState } from "react";
@@ -168,6 +168,15 @@ const FormExamplePage = (props: Props) => {
                     name="birthdate"
                     format="DD/MM/YYYY"
                     inputVariant="outlined"
+                  />
+                </MuiPickersUtilsProvider>
+                <MuiPickersUtilsProvider utils={DayJsUtils}>
+                  <Field
+                      component={KeyboardTimePicker}
+                      label="Hora"
+                      name="hora"
+                      inputVariant="outlined"
+                      ampm={false}
                   />
                 </MuiPickersUtilsProvider>
                 <Field
