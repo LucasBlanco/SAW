@@ -3,7 +3,7 @@ import React, { FC } from "react";
 interface Props {}
 
 const PageContainer: FC<Props> = (props) => {
-  return <div className="page">{props.children}</div>;
+  return <div className="sm:w-full sm:space-y-4 md:flex p-4 md:space-x-4 md:space-y-0 xl:px-40">{props.children}</div>;
 };
 
 export default PageContainer;

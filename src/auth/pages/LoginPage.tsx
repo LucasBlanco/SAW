@@ -94,7 +94,7 @@ const LoginPage = (props: Props) => {
                   Login
                 </Button>
               </div>
-              <p className="text-center text-grey-600 my-5 mt-10">
+              <p className="text-center text-gray-600 my-5 mt-10">
                 Or Connect with Social Media
               </p>
               <div className="flex justify-evenly items-center space-x-2">

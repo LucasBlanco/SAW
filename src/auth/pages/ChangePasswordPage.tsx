@@ -14,7 +14,7 @@ const ChangePasswordPage = (props: Props) => {
     >
       <div className="max-w-xl flex flex-col items-center">
         <h1 className="text-center font-bold text-2xl my-4">Change password</h1>
-        <p className="font-bold text-grey-500">
+        <p className="font-bold text-gray-500">
           Enter your new password and repeat it
         </p>
 

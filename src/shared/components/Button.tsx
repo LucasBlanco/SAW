@@ -25,7 +25,7 @@ const Button = ({
   onClick,
 }: Props) => {
   const baseStyle =
-    "rounded-md font-bold px-4 py-2 transition-all duration-300 ease-in-out focus:outline-none flex items-center justify-center";
+    "rounded-md font-semibold px-4 py-2.5 transition-all duration-300 ease-in-out focus:outline-none flex items-center justify-center text-xs";
 
   const shapes = {
     rounded: "rounded-full px-2 py-2",
@@ -36,21 +36,21 @@ const Button = ({
   const classes = {
     contained: `text-white ${
       disabled
-        ? `bg-${color}-400 hover:bg-${color}-400`
-        : `bg-${color}-500 hover:bg-${color}-600`
+        ? `bg-${color}-300 hover:bg-${color}-300 cursor-not-allowed`
+        : `bg-${color}-400 hover:bg-${color}-500`
     }`,
     text: `${
-      disabled ? `text-${color}-400` : `text-${color}-500 hover:bg-${color}-100`
+      disabled ? `text-${color}-400 cursor-not-allowed` : `text-${color}-500 hover:bg-${color}-100`
     }`,
     outlined: `border-solid border-2 ${
       disabled
-        ? `text-${color}-400 border-${color}-400`
-        : `text-${color}-500 border-${color}-400 hover:bg-${color}-100`
+        ? `text-${color}-300 border-${color}-300 cursor-not-allowed`
+        : `text-${color}-400 border-${color}-400 hover:bg-${color}-400 hover:text-white`
     }`,
     light: `${
       disabled
-        ? `text-${color}-400 bg-${color}-50`
-        : `text-${color}-500 bg-${color}-100 hover:bg-${color}-200`
+        ? `text-${color}-300 bg-${color}-200 cursor-not-allowed`
+        : `text-${color}-400 bg-${color}-100 hover:bg-${color}-400 hover:text-white`
     }`,
   };
   return (

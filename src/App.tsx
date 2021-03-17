@@ -39,7 +39,7 @@ function App() {
     },
     palette: {
       primary: {
-        main: "#7c3aed",
+        main: "#37bdf8",
       },
     },
   });
@@ -51,7 +51,7 @@ function App() {
             <SpinnerContext.Consumer>
               {(context) => (
                 <Backdrop open={context.isLoading} className={classes.backdrop}>
-                  <div className="flex bg-white space-x-4 p-4 font-bold text-grey-600 rounded-md items-center">
+                  <div className="flex bg-white space-x-4 p-4 font-bold text-gray-600 rounded-md items-center">
                     <span>Cargando</span>
                     <CircularProgress color="primary" size={30} />
                   </div>

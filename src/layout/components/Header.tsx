@@ -15,7 +15,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 interface Props {
-  toggleSidebar: () => void;
+  toggleSidebar: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const StyledMenuItem = withStyles((theme) => ({
@@ -51,23 +51,20 @@ const Header = (props: Props) => {
   return (
     <>
       <div
-        className="shadow-lg border-b-2 border-solid border-grey-100"
+        className="flex flex-grow shadow-lg border-b-2 border-solid border-gray-100 bg-white"
         style={{ zIndex: 510 }}
       >
-        <div className="flex justify-between px-3 text-primary items-center container h-16">
-          <button className="lg:hidden mr-4" onClick={props.toggleSidebar}>
+        <div className="flex flex-grow justify-between px-3 text-primary items-center h-16">
+          <button
+            className="lg:hidden mr-4"
+            onClick={(e) => props.toggleSidebar(e)}
+          >
             <MenuIcon />
           </button>
-          <img
-            src={Logo}
-            width="100px"
-            className="cursor-pointer"
-            onClick={() => history.push("/main/landing")}
-          />
           <div className="relative mr-auto ml-10 hidden md:inline-flex">
             <input
               type="text"
-              className="rounded-full bg-grey-100 border-none outline-none h-8 p-4 pl-12 w-full"
+              className="rounded-full bg-gray-100 border-none outline-none h-8 p-4 pl-12 w-full"
             />
             <SearchIcon className="absolute left-3 top-1" />
           </div>

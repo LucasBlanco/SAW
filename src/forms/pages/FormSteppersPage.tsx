@@ -10,8 +10,9 @@ import {
   faEnvelope,
   faEdit,
   faAddressCard,
-} from "@fortawesome/free-regular-svg-icons";
+} from "@fortawesome/free-solid-svg-icons";
 import Button from "shared/components/Button";
+import Card from "../../shared/components/Card/Card";
 
 interface Props {}
 
@@ -21,6 +22,8 @@ const FormSteppersPage = (props: Props) => {
 
   return (
     <PageContainer>
+        <Card className="w-full">
+            <div className="p-8">
       <Stepper value={step1}>
         <Step value={0} title="Step1" description="Description 1" />
         <Step value={1} title="Step2" description="Description 2" />
@@ -64,6 +67,8 @@ const FormSteppersPage = (props: Props) => {
           Next
         </Button>
       </div>
+            </div>
+        </Card>
     </PageContainer>
   );
 };

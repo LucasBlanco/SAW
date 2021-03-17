@@ -17,7 +17,10 @@ import {
   Switch,
   TextField,
 } from "formik-material-ui";
-import { KeyboardDatePicker } from "formik-material-ui-pickers";
+import {
+  KeyboardDatePicker,
+  KeyboardTimePicker,
+} from "formik-material-ui-pickers";
 import PageContainer from "layout/components/PageContainer";
 import PageHeader from "layout/components/PageHeader";
 import React, { useState } from "react";
@@ -30,6 +33,7 @@ import {
   AutocompleteRenderInputParams,
 } from "formik-material-ui-lab";
 import { FormRepeater, MUIFileUpload } from "shared/components";
+import Card from "../../shared/components/Card/Card";
 
 const ExampleSchema = Yup.object().shape({
   email: Yup.string()
@@ -82,140 +86,139 @@ const FormExamplePage = (props: Props) => {
     <>
       <PageHeader title="Forms" subtitle="Copy and paste form example" />
       <PageContainer>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={ExampleSchema}
-          onSubmit={submit}
-        >
-          {({ submitForm, touched, errors, values }) => (
-            <div className="flex flex-col">
-              <Form className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <Field
-                  name="email"
-                  label="Email"
-                  type="email"
-                  variant="outlined"
-                  component={TextField}
-                />
-                <Field
-                  name="password"
-                  label="Contraseña"
-                  variant="outlined"
-                  component={TextField}
-                />
-                <Field
-                  component={CheckboxWithLabel}
-                  type="checkbox"
-                  name="terms"
-                  color="primary"
-                  Label={{ label: "Accept terms and conditions" }}
-                />
-                <Field
-                  component={MUIFileUpload}
-                  className="aspect-w-1 aspect-h-1 "
-                  name="picture"
-                />
-                <Field component={RadioGroup} name="gender">
-                  <FormControlLabel
-                    value="female"
-                    control={<Radio color="primary" />}
-                    label="Female"
-                  />
-                  <FormControlLabel
-                    value="male"
-                    control={<Radio color="primary" />}
-                    label="Male"
-                  />
-                  <FormControlLabel
-                    value="other"
-                    control={<Radio color="primary" />}
-                    label="Other"
-                  />
-                </Field>
-                <FormControl variant="outlined">
-                  <InputLabel>Country</InputLabel>
-                  <Field component={Select} name="country" label="Country">
-                    <MenuItem value={"argentina"}>Argentina</MenuItem>
-                    <MenuItem value={"uruguay"}>Uruguay</MenuItem>
-                    <MenuItem value={"paraguay"}>Paraguay</MenuItem>
-                  </Field>
-                </FormControl>
-                <FormGroup>
-                  <FormControlLabel
-                    control={
-                      <Field
-                        component={Switch}
-                        type="checkbox"
-                        name="enabled"
-                      />
-                    }
-                    label="Enabled"
-                  />
-                </FormGroup>
-                <MuiPickersUtilsProvider locale={ptAr} utils={DayJsUtils}>
-                  <Field
-                    component={KeyboardDatePicker}
-                    label="Birth Date"
-                    name="birthdate"
-                    format="DD/MM/YYYY"
-                    inputVariant="outlined"
-                  />
-                </MuiPickersUtilsProvider>
-                {/* <Field
-                  name="film"
-                  component={Autocomplete}
-                  options={options}
-                  getOptionLabel={(option: any) => option.title}
-                  renderInput={(params: AutocompleteRenderInputParams) => (
-                    <MUITextField
-                      {...params}
-                      error={touched["film"] && !!errors["film"]}
-                      helperText={errors["film"]}
-                      label="Film"
+        <Card className="w-full">
+          <div className="p-8">
+            <Formik
+              initialValues={initialValues}
+              validationSchema={ExampleSchema}
+              onSubmit={submit}
+            >
+              {({ submitForm, touched, errors, values }) => (
+                <div className="flex flex-col">
+                  <Form className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <Field
+                      name="email"
+                      label="Email"
+                      type="email"
                       variant="outlined"
+                      component={TextField}
                     />
-                  )}
-                /> */}
-                <div>
-                  <FieldArray
-                    name="repeat"
-                    render={(arrayHelpers) => (
-                      <FormRepeater
-                        arrayHelpers={arrayHelpers}
-                        createField={() => ""}
-                      >
-                        {values.repeat.map((value, index) => (
-                          <>
-                            <Field
-                              name={`repeat.${index}`}
-                              label={`Repeat ${index + 1}`}
-                              variant="outlined"
-                              component={TextField}
-                            />
-                            <Field
-                              name={`repeat.${index}`}
-                              label={`Repeat ${index + 1}`}
-                              variant="outlined"
-                              component={TextField}
-                            />
-                          </>
-                        ))}
-                      </FormRepeater>
-                    )}
-                  />
+                    <Field
+                      name="password"
+                      label="Contraseña"
+                      variant="outlined"
+                      component={TextField}
+                    />
+                    <Field
+                      component={CheckboxWithLabel}
+                      type="checkbox"
+                      name="terms"
+                      color="primary"
+                      Label={{ label: "Accept terms and conditions" }}
+                    />
+                    <Field
+                      component={MUIFileUpload}
+                      className="aspect-w-3 aspect-h-1 "
+                      name="picture"
+                    />
+                    <Field component={RadioGroup} name="gender">
+                      <FormControlLabel
+                        value="female"
+                        control={<Radio color="primary" />}
+                        label="Female"
+                      />
+                      <FormControlLabel
+                        value="male"
+                        control={<Radio color="primary" />}
+                        label="Male"
+                      />
+                      <FormControlLabel
+                        value="other"
+                        control={<Radio color="primary" />}
+                        label="Other"
+                      />
+                    </Field>
+                    <FormControl variant="outlined">
+                      <InputLabel>Country</InputLabel>
+                      <Field component={Select} name="country" label="Country">
+                        <MenuItem value={"argentina"}>Argentina</MenuItem>
+                        <MenuItem value={"uruguay"}>Uruguay</MenuItem>
+                        <MenuItem value={"paraguay"}>Paraguay</MenuItem>
+                      </Field>
+                    </FormControl>
+                    <FormGroup>
+                      <FormControlLabel
+                        control={
+                          <Field
+                            component={Switch}
+                            type="checkbox"
+                            name="enabled"
+                          />
+                        }
+                        label="Enabled"
+                      />
+                    </FormGroup>
+                    <MuiPickersUtilsProvider locale={ptAr} utils={DayJsUtils}>
+                      <Field
+                        component={KeyboardDatePicker}
+                        label="Birth Date"
+                        name="birthdate"
+                        format="DD/MM/YYYY"
+                        inputVariant="outlined"
+                      />
+                    </MuiPickersUtilsProvider>
+                    <MuiPickersUtilsProvider utils={DayJsUtils}>
+                      <Field
+                        component={KeyboardTimePicker}
+                        label="Hora"
+                        name="hora"
+                        inputVariant="outlined"
+                        ampm={false}
+                      />
+                    </MuiPickersUtilsProvider>
+                    <Field />
+                    <div>
+                      <FieldArray
+                        name="repeat"
+                        render={(arrayHelpers) => (
+                          <FormRepeater
+                            arrayHelpers={arrayHelpers}
+                            createField={() => ""}
+                          >
+                            {values.repeat.map((value, index) => (
+                              <>
+                                <Field
+                                  name={`repeat.${index}`}
+                                  label={`Repeat ${index + 1}`}
+                                  variant="outlined"
+                                  component={TextField}
+                                />
+                                <Field
+                                  name={`repeat.${index}`}
+                                  label={`Repeat ${index + 1}`}
+                                  variant="outlined"
+                                  component={TextField}
+                                />
+                              </>
+                            ))}
+                          </FormRepeater>
+                        )}
+                      />
+                    </div>
+                  </Form>
+                  <Button
+                    variant="contained"
+                    onClick={submitForm}
+                    className="ml-auto mt-8"
+                    isLoading={isLoading}
+                  >
+                    Guardar
+                  </Button>
                 </div>
-              </Form>
-              <Button
-                variant="contained"
-                onClick={submitForm}
-                className="ml-auto mt-8"
-                isLoading={isLoading}
-              >
-                Guardar
-              </Button>
-            </div>
-          )}
-        </Formik>
+              )}
+            </Formik>
+          </div>
+        </Card>
       </PageContainer>
     </>
   );
