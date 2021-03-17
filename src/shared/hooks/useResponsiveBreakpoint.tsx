@@ -3,7 +3,7 @@ import useWindowSize from "./useWindowSize";
 
 const useResponsiveBreakpoint = () => {
   const [breakpoint, setBreakpoint] = useState<
-    "xs" | "sm" | "md" | "lg" | "xl"
+    "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
   >("sm");
   const size = useWindowSize();
 
@@ -28,6 +28,7 @@ const useResponsiveBreakpoint = () => {
       setBreakpoint("xl");
       return;
     }
+    setBreakpoint("2xl");
   }, [size]);
 
   return breakpoint;
