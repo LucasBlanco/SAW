@@ -102,12 +102,14 @@ const FormExamplePage = (props: Props) => {
                       type="email"
                       variant="outlined"
                       component={TextField}
+                      size="small"
                     />
                     <Field
                       name="password"
                       label="Contraseña"
                       variant="outlined"
                       component={TextField}
+                      size="small"
                     />
                     <Field
                       component={CheckboxWithLabel}

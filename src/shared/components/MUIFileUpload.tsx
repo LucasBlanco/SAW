@@ -31,7 +31,7 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
   };
 
   return (
-    <>
+    <div>
       <input
         ref={inputRef}
         style={{ display: "none" }}
@@ -73,7 +73,7 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
       {form.errors[field.name] && (
         <p style={{ color: "red" }}>{form.errors[field.name]}</p>
       )}
-    </>
+    </div>
   );
 }
 
