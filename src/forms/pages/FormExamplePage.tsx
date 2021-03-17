@@ -41,13 +41,7 @@ const ExampleSchema = Yup.object().shape({
   terms: Yup.bool(),
   gender: Yup.string(),
   picture: Yup.mixed().required("La foto es requerida"),
-  birthdate: Yup.mixed().test(
-    "oltherThan18",
-    "Must be over 18 years old",
-    (value, context) => {
-      return !value && (value as Dayjs).isBefore(dayjs().add(-18, "years"));
-    }
-  ),
+  birthdate: Yup.mixed(),
   repeat: Yup.array(),
 });
 interface Props {}
@@ -69,12 +63,14 @@ const FormExamplePage = (props: Props) => {
     birthdate: dayjs(),
     film: "",
     repeat: [""],
+    picture: undefined,
   };
 
   const submit = async (
     value: any,
     formikHelpers: FormikHelpers<FormSchema>
   ) => {
+    console.log(value);
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
@@ -116,9 +112,8 @@ const FormExamplePage = (props: Props) => {
                 />
                 <Field
                   component={MUIFileUpload}
-                  className="aspect-w-3 aspect-h-1 "
+                  className="aspect-w-1 aspect-h-1 "
                   name="picture"
-                  color="primary"
                 />
                 <Field component={RadioGroup} name="gender">
                   <FormControlLabel
@@ -166,7 +161,7 @@ const FormExamplePage = (props: Props) => {
                     inputVariant="outlined"
                   />
                 </MuiPickersUtilsProvider>
-                <Field
+                {/* <Field
                   name="film"
                   component={Autocomplete}
                   options={options}
@@ -180,7 +175,7 @@ const FormExamplePage = (props: Props) => {
                       variant="outlined"
                     />
                   )}
-                />
+                /> */}
                 <div>
                   <FieldArray
                     name="repeat"
@@ -236,6 +231,7 @@ interface FormSchema {
   birthdate: Dayjs;
   film: any;
   repeat: string[];
+  picture: File | undefined;
 }
 
 export default FormExamplePage;

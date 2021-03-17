@@ -25,13 +25,13 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
     }
     const addAspectW = !props.className.includes("aspect-w");
     const addAspectH = !props.className.includes("aspect-h");
-    return `${props.className} ${addAspectW && "aspect-w-2"} ${
-      addAspectH && "aspect-h-1"
+    return `${props.className} ${addAspectW ? "aspect-w-2" : ""} ${
+      addAspectH ? "aspect-h-1" : ""
     }`;
   };
 
   return (
-    <div>
+    <>
       <input
         ref={inputRef}
         style={{ display: "none" }}
@@ -73,7 +73,7 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
       {form.errors[field.name] && (
         <p style={{ color: "red" }}>{form.errors[field.name]}</p>
       )}
-    </div>
+    </>
   );
 }
 
