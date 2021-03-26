@@ -33,7 +33,7 @@ const ProfilePage = (props: Props) => {
                   style={{ backgroundImage: `url(${PersonImg})` }}
               ></div>
               <div className="overflow-hidden">
-                <h1 className="font-bold text-gray-600">James Jones</h1>
+                <h1 className="font-semibold text-gray-600">James Jones</h1>
                 <h1 className="text-gray-400 ellipsis">james.jones@gmail.com</h1>
               </div>
             </div>

@@ -8,7 +8,7 @@ import {
     getLatLng,
 } from 'react-places-autocomplete';
 import * as Yup from "yup";
-import * as faker from "faker/locale/ar";
+import * as faker from "faker/locale/es";
 import {DomicilioGoogle} from "../models/DomicilioGoogle";
 
 
@@ -40,20 +40,20 @@ function MUIGooglePlaces(props: FieldProps & PropsField) {
     const { form } = props;
 
     const handleChange = (e) => {
-            limpiarDomicilio()
-            domicilio.text = e
-            form.setFieldValue(field.name, domicilio);
-            setIsValid(false)
+        limpiarDomicilio()
+        domicilio.text = e
+        form.setFieldValue(field.name, domicilio);
+        setIsValid(false)
     };
 
     const fillDomicilioWithGoogleAddressComponents = (componentes) => {
-            domicilio.calle = buscarTipoEnComponente('route', componentes)
-            domicilio.numero = buscarTipoEnComponente('street_number', componentes)
-            domicilio.partido = buscarTipoEnComponente('administrative_area_level_2', componentes)
-            domicilio.localidad = buscarTipoEnComponente('locality', componentes) || buscarTipoEnComponente('sublocality', componentes)
-            domicilio.provincia = buscarTipoEnComponente('administrative_area_level_1', componentes)
-            domicilio.pais = buscarTipoEnComponente('country', componentes)
-            domicilio.codigoPostal = buscarTipoEnComponente('postal_code', componentes)
+        domicilio.calle = buscarTipoEnComponente('route', componentes)
+        domicilio.numero = buscarTipoEnComponente('street_number', componentes)
+        domicilio.partido = buscarTipoEnComponente('administrative_area_level_2', componentes)
+        domicilio.localidad = buscarTipoEnComponente('locality', componentes) || buscarTipoEnComponente('sublocality', componentes)
+        domicilio.provincia = buscarTipoEnComponente('administrative_area_level_1', componentes)
+        domicilio.pais = buscarTipoEnComponente('country', componentes)
+        domicilio.codigoPostal = buscarTipoEnComponente('postal_code', componentes)
     }
 
     const limpiarDomicilio = () => {
@@ -111,7 +111,7 @@ function MUIGooglePlaces(props: FieldProps & PropsField) {
                 searchOptions={{types: ['address']}}
             >
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    <div>
+                    <div className={props.className}>
                         <TextField {...getInputProps({
                             placeholder: props.placeholder,
                             fullWidth: props.fullWidth,
@@ -124,20 +124,20 @@ function MUIGooglePlaces(props: FieldProps & PropsField) {
 
                         {suggestions.length > 0 && (
                             <div className="border-2 border-gray-100 p-1.5">
-                            {loading && <div>Cargando...</div>}
-                            {suggestions.map(suggestion => {
-                                return (
-                                    <div
-                                        key={suggestion.key}
-                                        {...getSuggestionItemProps(suggestion, {
-                                            className: "p-1.5 bg-white hover:bg-gray-100 cursor-pointer",
-                                        })}
-                                    >
-                                        <span>{suggestion.description}</span>
-                                    </div>
-                                );
-                            })}
-                        </div>)}
+                                {loading && <div>Cargando...</div>}
+                                {suggestions.map(suggestion => {
+                                    return (
+                                        <div
+                                            key={suggestion.key}
+                                            {...getSuggestionItemProps(suggestion, {
+                                                className: "p-1.5 bg-white hover:bg-gray-100 cursor-pointer",
+                                            })}
+                                        >
+                                            <span>{suggestion.description}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>)}
                     </div>
                 )}
             </PlacesAutocomplete>
@@ -161,10 +161,40 @@ export function cleanDomicilioGoogleField(): DomicilioGoogle {
 
 export interface DomicilioGoogleFieldSchema extends DomicilioGoogle {text:string}
 
-export function domicilioGoogleToFieldSchema(domicilioGoogle: DomicilioGoogle) {
+export function domicilioGoogleToFieldSchema(domicilioGoogle: DomicilioGoogle): DomicilioGoogleFieldSchema {
     return {
         ...domicilioGoogle,
         text: domicilioGoogle.calle + " " + domicilioGoogle.numero + ", " + domicilioGoogle.localidad + ", " + domicilioGoogle.provincia
+    }
+}
+
+export function domicilioGoogleFieldSchemaInitialValues(): DomicilioGoogleFieldSchema {
+    return {
+        latitud: 0,
+        longitud: 0,
+        calle: "",
+        numero: "",
+        partido: "",
+        localidad: "",
+        provincia: "",
+        pais: "",
+        codigoPostal: "",
+        text: ""
+    }
+}
+
+
+export function domicilioGoogleFieldSchemaToModel(domicilioSchema: DomicilioGoogleFieldSchema): DomicilioGoogle{
+    return {
+        latitud: domicilioSchema.latitud,
+        longitud: domicilioSchema.longitud,
+        calle: domicilioSchema.calle,
+        numero: domicilioSchema.numero,
+        partido: domicilioSchema.partido,
+        localidad: domicilioSchema.localidad,
+        provincia: domicilioSchema.provincia,
+        pais: domicilioSchema.pais,
+        codigoPostal: domicilioSchema.codigoPostal
     }
 }
 
