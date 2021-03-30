@@ -18,27 +18,29 @@ interface PropsField {
     variant?: string,
     fullWidth?: boolean
     placeholder?: string
+    name:string
 }
 
-const domicilioVacio: DomicilioGoogleFieldSchema = {
-    text: "",
-    latitud: 0,
-    longitud: 0,
-    calle: "",
-    numero: "",
-    partido: "",
-    localidad: "",
-    provincia: "",
-    pais: "",
-    codigoPostal: ""
-}
+
 
 function MUIGooglePlaces(props: FieldProps & PropsField) {
     const [field, meta] = useField(props.field.name);
     const [isValid, setIsValid] = useState(false);
+    const domicilioVacio: DomicilioGoogleFieldSchema = {
+        text: "",
+        latitud: 0,
+        longitud: 0,
+        calle: "",
+        numero: "",
+        partido: "",
+        localidad: "",
+        provincia: "",
+        pais: "",
+        codigoPostal: ""
+    }
     const domicilio: DomicilioGoogleFieldSchema = domicilioVacio
     const { form } = props;
-
+    console.log(field.name, field.value)
     const handleChange = (e) => {
         limpiarDomicilio()
         domicilio.text = e
@@ -119,7 +121,8 @@ function MUIGooglePlaces(props: FieldProps & PropsField) {
                             label: props.label,
                             error: hasError(),
                             helperText: getError(),
-                            ...props
+                            ...props,
+                            name:field.name
                         })} />
 
                         {suggestions.length > 0 && (
