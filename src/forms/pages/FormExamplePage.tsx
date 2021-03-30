@@ -34,6 +34,7 @@ import {
 } from "formik-material-ui-lab";
 import { FormRepeater, MUIFileUpload } from "shared/components";
 import Card from "../../shared/components/Card/Card";
+import AutocompleteAsync from "layout/components/AutocompleteAsync";
 
 const ExampleSchema = Yup.object().shape({
   email: Yup.string()
@@ -51,10 +52,15 @@ const ExampleSchema = Yup.object().shape({
 interface Props {}
 
 const FormExamplePage = (props: Props) => {
-  const options = [
-    { title: "The Shawshank Redemption", year: 1994 },
-    { title: "Jurassic Park", year: 1995 },
-  ];
+  const getOptions = async (text: string) => {
+    const movies = [
+      { title: "The Shawshank Redemption", year: 1994 },
+      { title: "Jurassic Park", year: 1995 },
+    ];
+    return movies.filter((movie) =>
+      movie.title.toLowerCase().includes(text.toLocaleLowerCase())
+    );
+  };
   const [isLoading, setIsLoading] = useState(false);
 
   const initialValues: FormSchema = {
@@ -96,6 +102,27 @@ const FormExamplePage = (props: Props) => {
               {({ submitForm, touched, errors, values }) => (
                 <div className="flex flex-col">
                   <Form className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <Field
+                      name="film"
+                      component={AutocompleteAsync}
+                      getOptionLabel={(option: any) =>
+                        option ? option.title : ""
+                      }
+                      getOptionSelected={(option: any, value: any) =>
+                        option.film === value?.film
+                      }
+                      fetchOptions={getOptions}
+                      onChange={console.log}
+                      renderInput={(params: AutocompleteRenderInputParams) => (
+                        <MUITextField
+                          {...params}
+                          error={touched["film"] && !!errors["film"]}
+                          helperText={errors["film"]}
+                          label="Autocomplete"
+                          variant="outlined"
+                        />
+                      )}
+                    />
                     <Field
                       name="email"
                       label="Email"

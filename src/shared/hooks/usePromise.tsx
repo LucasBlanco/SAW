@@ -2,7 +2,7 @@ import { TrafficRounded, TramOutlined } from "@material-ui/icons";
 import React, { useEffect } from "react";
 
 const usePromise = function <T>(fetchFn: () => Promise<T>, defaultValue?: T) {
-  const [data, setData] = React.useState<T | undefined>(undefined);
+  const [data, setData] = React.useState<T | typeof defaultValue>(defaultValue);
   const [isLoading, setIsLoading] = React.useState(true);
   const [isError, setIsError] = React.useState(false);
   let isSubscribed = true;
