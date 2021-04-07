@@ -3,6 +3,8 @@ import AuthLayout from "auth/components/AuthLayout";
 import React from "react";
 import Button from "shared/components/Button";
 import ChangePasswordIlustration from "../../assets/change-password.svg";
+import Logo from "../../assets/logo.png";
+
 interface Props {}
 
 const ChangePasswordPage = (props: Props) => {
@@ -11,6 +13,7 @@ const ChangePasswordPage = (props: Props) => {
       ilustration={ChangePasswordIlustration}
       title="Change Password"
       subtitle="Just one more step to recover you account."
+      logo={Logo}
     >
       <div className="max-w-xl flex flex-col items-center">
         <h1 className="text-center font-bold text-2xl my-4">Change password</h1>

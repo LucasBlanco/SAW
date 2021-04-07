@@ -1,15 +1,17 @@
 import MUIButton from "@material-ui/core/Button";
 import Button from "shared/components/Button";
-import React, { useState } from "react";
+import React from "react";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import GoogleIcon from "../../assets/google-plus.png";
 import LoginIlustration from "../../assets/login.svg";
+import Logo from "../../assets/logo.png";
 import AuthLayout from "auth/components/AuthLayout";
 import * as Yup from "yup";
-import { AuthContextType } from "auth/services/AuthService";
-import { Field, Form, Formik, FormikHelpers } from "formik";
-import { TextField } from "formik-material-ui";
-import { Link } from "react-router-dom";
+import {AuthContextType} from "auth/services/AuthService";
+import {Field, Form, Formik, FormikHelpers} from "formik";
+import {TextField} from "formik-material-ui";
+import {Link} from "react-router-dom";
+import usePromiseStatus from "../../shared/hooks/usePromiseStatus";
 
 interface FormSchema {
   email: string;
@@ -28,22 +30,25 @@ const Schema = Yup.object().shape({
 interface Props {
   authSrv: AuthContextType;
 }
+
 const LoginPage = (props: Props) => {
   const initialValues: FormSchema = {
     email: "",
     password: "",
   };
+  const {isError, isLoading, handlePromise} = usePromiseStatus()
 
   const submit = async (
     value: FormSchema,
     formikHelpers: FormikHelpers<FormSchema>
   ) => {
-    await props.authSrv.login(value);
+    await handlePromise(() => props.authSrv.login(value));
+
     formikHelpers.resetForm();
   };
 
   return (
-    <AuthLayout ilustration={LoginIlustration} title="Welcome to Vadiun">
+    <AuthLayout ilustration={LoginIlustration} logo={Logo} title="Bienvenido a Las Leñas Traslados">
       <div className="max-w-xl flex flex-col items-center">
         <h1 className="text-center font-bold text-2xl my-4">Login</h1>
         <p>
@@ -57,6 +62,7 @@ const LoginPage = (props: Props) => {
         >
           {({ handleSubmit, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
+              {isError && "la concha de tu madre"}
               <Field
                 label="Email"
                 variant="outlined"
@@ -88,6 +94,7 @@ const LoginPage = (props: Props) => {
                   color="primary"
                   className="w-full"
                   variant="contained"
+                  type="submit"
                   disabled={isSubmitting}
                   isLoading={isSubmitting}
                 >
