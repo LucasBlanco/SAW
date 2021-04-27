@@ -1,6 +1,6 @@
-import { useAuth } from "auth/services/AuthService";
+import {useAuth} from "auth/services/AuthService";
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import ChangePasswordPage from "./ChangePasswordPage";
 import ForgotPasswordPage from "./ForgotPasswordPage";
 import LoginPage from "./LoginPage";

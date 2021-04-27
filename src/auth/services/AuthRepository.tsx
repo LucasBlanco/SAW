@@ -1,18 +1,16 @@
-import { httpClient } from "shared/services/http/httpClient";
-import { Permission, User } from "auth/models/User";
+import {httpClient} from "shared/services/http/httpClient";
+import {User} from "auth/models/User";
 import React from "react";
 
 const useAuthRepository = () => {
-  const users = httpClient.get("users");
+  //const users = httpClient.get("users");
 
-  const permissions = httpClient.get("permissions");
+  //const permissions = httpClient.get("permissions");
 
   const reloadUsers = () => {};
 
-  const login = (x: { email: string; password: string }) =>
-    new Promise<{ token: string }>((resolve) => {
-      setTimeout(() => resolve({ token: "token" }), 2000);
-    });
+  const login = (x: { email: string; password: string }) =>  httpClient.post("login", x)
+
 
   const add = (user: User) => httpClient.post("users", user);
 
@@ -30,8 +28,6 @@ const useAuthRepository = () => {
   };
 
   return {
-    users,
-    permissions,
     login,
     add,
     remove,

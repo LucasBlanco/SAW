@@ -34,7 +34,7 @@ import {
 } from "formik-material-ui-lab";
 import { FormRepeater, MUIFileUpload } from "shared/components";
 import Card from "../../shared/components/Card/Card";
-import AutocompleteAsync from "layout/components/AutocompleteAsync";
+import AutocompleteAsync from "shared/components/AutocompleteAsync";
 
 const ExampleSchema = Yup.object().shape({
   email: Yup.string()
