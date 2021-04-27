@@ -1,6 +1,6 @@
 import MUIButton from "@material-ui/core/Button";
 import Button from "shared/components/Button";
-import React, { useState } from "react";
+import React from "react";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import GoogleIcon from "../../assets/google-plus.png";
 import LoginIlustration from "../../assets/login.svg";

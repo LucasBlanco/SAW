@@ -2,9 +2,8 @@ import { useHistory } from "react-router-dom";
 
 import { User, Permission, LoginCredentials } from "../models/User";
 
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useAuthRepository from "./AuthRepository";
-import { createFalse } from "typescript";
 
 export interface AuthContextType {
   isAuthenticated: () => boolean;

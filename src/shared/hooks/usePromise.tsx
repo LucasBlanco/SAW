@@ -1,43 +1,86 @@
-import { TrafficRounded, TramOutlined } from "@material-ui/icons";
-import React, { useEffect } from "react";
+import React, { useCallback, useReducer, useRef } from "react";
+
+type Action<T> =
+  | { type: "pending" }
+  | { type: "resolved"; payload: T }
+  | { type: "rejected"; payload: Error };
+
+interface State<T> {
+  isLoading: boolean;
+  isError: boolean;
+  data: T | undefined;
+  error: Error | undefined;
+}
+
+function reducer<T>(state: State<T>, action: Action<T>): State<T> {
+  switch (action.type) {
+    case "pending":
+      return {
+        isError: false,
+        isLoading: true,
+        data: state.data,
+        error: undefined,
+      };
+
+    case "resolved":
+      return {
+        isError: false,
+        isLoading: false,
+        data: action.payload,
+        error: undefined,
+      };
+
+    case "rejected":
+      return {
+        isError: true,
+        isLoading: false,
+        data: undefined,
+        error: undefined,
+      };
+
+    default:
+      return state;
+  }
+}
+
+const initialState = {
+  isLoading: false,
+  isError: false,
+  error: undefined,
+  data: undefined,
+};
 
 const usePromise = function <T>(fetchFn: () => Promise<T>, defaultValue?: T) {
-  const [data, setData] = React.useState<T | typeof defaultValue>(defaultValue);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [isError, setIsError] = React.useState(false);
-  let isSubscribed = true;
-
-  useEffect(() => {
-    if (defaultValue) {
-      setData(defaultValue);
-    }
-  }, []);
+  const isSubscribed = useRef(true);
+  const [{ isLoading, isError, error, data }, dispatch] = useReducer(reducer, {
+    ...initialState,
+    data: defaultValue,
+  } as State<T>);
 
   const reload = () => {
+    dispatch({ type: "pending" });
     return fetchFn()
       .then((response) => {
-        if (isSubscribed) {
-          setData(response);
-          setIsLoading(false);
+        if (isSubscribed.current) {
+          dispatch({ type: "resolved", payload: response });
         }
-        return response;
       })
       .catch((res) => {
-        if (isSubscribed) {
-          setIsError(true);
+        if (isSubscribed.current) {
+          dispatch({ type: "rejected", payload: res });
         }
-        throw res;
       });
   };
 
   React.useEffect(() => {
     reload();
     return () => {
-      isSubscribed = false;
+      isSubscribed.current = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { data, isLoading, isError, helpers: { reload } };
+  return [data as T, { isLoading, isError, reload, error }] as const;
 };
 
 export default usePromise;

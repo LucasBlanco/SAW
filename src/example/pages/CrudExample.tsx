@@ -15,7 +15,7 @@ const CrudExample = () => {
   const ExampleService = useExamples();
   const { handleSpinner } = useSpinner();
   const { handleRequest } = useRequest();
-  const { data: examples, helpers } = usePromise(
+  const [examples, helpers] = usePromise<ExampleModel[]>(
     () => handleSpinner(ExampleService.getExamples()),
     []
   );
