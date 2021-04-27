@@ -8,6 +8,6 @@ const prod = {
   production: true,
 };
 
-const environment = process.env.STAGE === "prod" ? prod : dev;
+const environment = process.env.REACT_APP_STAGE === "prod" ? prod : dev;
 
 export default environment;
