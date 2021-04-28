@@ -19,7 +19,11 @@ export interface LaravelPaginated<T> {
 }
 
 const customTableHandler = serverSideHandler({
-  paginator: serverSidePaginator({ label: "page", firstPageNro: 1 }),
+  paginator: serverSidePaginator({
+    label: "page",
+    firstPageNro: 1,
+    itemsPerPageLabel: "limit",
+  }),
   filter: serverSideFilter("search"),
   order: serverSideOrder(
     ({ name, direction }) => `orden=${name}&orden_tipo=${direction}`
