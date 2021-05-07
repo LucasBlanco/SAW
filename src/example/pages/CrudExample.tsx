@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import TableExample from "./TableExample";
 import CreateExample from "./CreateExample";
 import EditExample from "./EditExample";
@@ -12,13 +12,13 @@ import PageContainer from "layout/components/PageContainer";
 import PageHeader from "layout/components/PageHeader";
 
 const CrudExample = () => {
-  const ExampleService = useExamples();
+  const { getExamples, ...ExampleService } = useExamples();
   const { handleSpinner } = useSpinner();
   const { handleRequest } = useRequest();
-  const [examples, helpers] = usePromise<ExampleModel[]>(
-    () => handleSpinner(ExampleService.getExamples()),
-    []
-  );
+  const [id, setId] = useState(1);
+  const [examples, helpers] = usePromise(() => handleSpinner(getExamples(id)), [
+    id,
+  ]);
   const [visiblePage, setVisiblePage] = useState<"table" | "create" | "edit">(
     "table"
   );
@@ -66,6 +66,9 @@ const CrudExample = () => {
 
       {visiblePage === "table" && (
         <div className="md:my-8 md:mx-32">
+          <Button onClick={() => setId((id) => id + 1)} variant="light">
+            Next id
+          </Button>
           <TableExample
             examples={examples!}
             selectToEdit={selectToEdit}

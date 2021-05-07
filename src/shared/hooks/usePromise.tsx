@@ -1,4 +1,10 @@
 import React, { useCallback, useReducer, useRef } from "react";
+import { DependencyList } from "react";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface FetchFn<T, P extends any[] = []> {
+  (...args: P): Promise<T>;
+}
 
 type Action<T> =
   | { type: "pending" }
@@ -50,14 +56,17 @@ const initialState = {
   data: undefined,
 };
 
-const usePromise = function <T>(fetchFn: () => Promise<T>, defaultValue?: T) {
+const usePromise = function <T>(
+  fetchFn: FetchFn<T, []>,
+  dependencies: DependencyList
+) {
   const isSubscribed = useRef(true);
-  const [{ isLoading, isError, error, data }, dispatch] = useReducer(reducer, {
-    ...initialState,
-    data: defaultValue,
-  } as State<T>);
+  const [{ isLoading, isError, error, data }, dispatch] = useReducer(
+    reducer,
+    initialState as State<T>
+  );
 
-  const reload = () => {
+  const reload = useCallback(() => {
     dispatch({ type: "pending" });
     return fetchFn()
       .then((response) => {
@@ -70,15 +79,14 @@ const usePromise = function <T>(fetchFn: () => Promise<T>, defaultValue?: T) {
           dispatch({ type: "rejected", payload: res });
         }
       });
-  };
+  }, dependencies);
 
   React.useEffect(() => {
     reload();
     return () => {
       isSubscribed.current = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [reload]);
 
   return [data as T, { isLoading, isError, reload, error }] as const;
 };
