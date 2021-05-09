@@ -1,6 +1,6 @@
 import TextField from "@material-ui/core/TextField";
 import React from "react";
-import {Button} from "../../shared/components";
+import Button from "vadiun-button";
 
 interface Props {}
 

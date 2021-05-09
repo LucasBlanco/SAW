@@ -10,6 +10,7 @@ import { Switch, Route } from "react-router-dom";
 import Landing from "./Landing";
 import ButtonsExample from "../../example/pages/ButtonsExample";
 import useResponsiveBreakpoint from "shared/hooks/useResponsiveBreakpoint";
+import ModalExample from "../../example/pages/ModalExample";
 
 interface Props {}
 
@@ -74,6 +75,9 @@ const MainLayout = (props: Props) => {
           <Route path="/main/landing">
             <Landing />
           </Route>
+          <Route path="/main/example/modal">
+            <ModalExample />
+          </Route>
           <Route path="/main/example">
             <CrudExample />
           </Route>
@@ -89,6 +93,7 @@ const MainLayout = (props: Props) => {
           <Route path="/main/forms/buttons">
             <ButtonsExample />
           </Route>
+
         </Switch>
       </div>
     </div>

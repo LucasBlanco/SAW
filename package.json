@@ -44,7 +44,10 @@
     "tailwind-override": "0.0.7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.0.3",
+    "vadiun-alert": "^0.1.0",
     "vadiun-button": "^0.1.1",
+    "vadiun-chip": "^0.1.0",
+    "vadiun-modal": "^0.1.1",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.8"
   },

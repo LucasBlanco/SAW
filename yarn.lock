@@ -12052,6 +12052,11 @@ v8-to-istanbul@^7.0.0:
     convert-source-map "^1.6.0"
     source-map "^0.7.3"
 
+vadiun-alert@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/vadiun-alert/-/vadiun-alert-0.1.0.tgz#cd61ebf66aaa58fb341922bcf451be36889b1b89"
+  integrity sha512-IDziJuabvjjGy6OgJn9axGILtlBhoyKR1I+9gbAqtBQkzR6sVZlvSvSBM03uHVxJacCv+lc6zpvAv4dpp24oNQ==
+
 vadiun-button@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/vadiun-button/-/vadiun-button-0.1.1.tgz#833a27dfa3396e8d70440bcd7903abefff39511d"
@@ -12059,6 +12064,16 @@ vadiun-button@^0.1.1:
   dependencies:
     autoprefixer "^9"
     postcss "^7"
+
+vadiun-chip@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/vadiun-chip/-/vadiun-chip-0.1.0.tgz#3becfffd282a2594b5902ca885777cfac425377f"
+  integrity sha512-ljrB5FpeuKbGwTEZBfzqrT7Bs8l/mBvq1e9uNOZTJDAr2hH0PZI1wIsWXHuodGZKY/WmbFjckXXBBIlxW4Nlyg==
+
+vadiun-modal@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vadiun-modal/-/vadiun-modal-0.1.1.tgz#cd6db56f5857d0e61c40bbad91bafc07274f2e24"
+  integrity sha512-HgE4Xk4qHUVP4Fk7Ox9Dqv7aCI3654fapRqVyaNAeba/elPlXoKcpiU2DWOXhuieHkDPXjD0w2Y49xjaduKGsw==
 
 validate-npm-package-license@^3.0.1:
   version "3.0.4"

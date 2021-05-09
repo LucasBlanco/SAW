@@ -171,6 +171,12 @@ const Sidebar = ({ status, toggleCollapse }: Props) => {
             onClick={() => onSelection("/main/forms/buttons")}
             isCollapsed={isCollapsed}
           />
+          <SidebarItem
+              label="Modal"
+              isSelected={selectedItem === "/main/example/modal"}
+              onClick={() => onSelection("/main/example/modal")}
+              isCollapsed={isCollapsed}
+          />
         </SidebarItem>
       </div>
     </>

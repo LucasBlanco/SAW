@@ -5,7 +5,7 @@ import { FieldProps, FormikProps } from "formik";
 
 import { faCamera, faEdit, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from ".";
+import Button  from "vadiun-button";
 import { overrideTailwindClasses } from "tailwind-override";
 
 function MUIFileUpload(props: FieldProps & { className?: string }) {
