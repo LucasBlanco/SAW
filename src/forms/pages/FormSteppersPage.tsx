@@ -11,7 +11,7 @@ import {
   faEdit,
   faAddressCard,
 } from "@fortawesome/free-solid-svg-icons";
-import Button from "shared/components/Button";
+import Button from "vadiun-button"
 import Card from "../../shared/components/Card/Card";
 
 interface Props {}

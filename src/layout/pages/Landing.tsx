@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "shared/components/Button";
+import Button from "vadiun-button"
 
 const Landing = () => {
   return <>Landing</>;

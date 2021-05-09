@@ -12,7 +12,7 @@ import {
 import ProfileMenu from "profile/components/ProfileMenu";
 import ProfileMenuItem from "profile/components/ProfileMenuItem";
 import ChangePassword from "./ChangePassword";
-import Button from "shared/components/Button";
+import Button from "vadiun-button"
 import {fas} from "@fortawesome/free-solid-svg-icons";
 import Card from "../../shared/components/Card/Card";
 import PageContainer from "../../layout/components/PageContainer";

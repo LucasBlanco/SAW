@@ -24,7 +24,7 @@ import {
 import PageContainer from "layout/components/PageContainer";
 import PageHeader from "layout/components/PageHeader";
 import React, { useState } from "react";
-import Button from "shared/components/Button";
+import Button from "vadiun-button"
 import * as Yup from "yup";
 import ptAr from "dayjs/locale/es";
 import dayjs, { Dayjs } from "dayjs";
@@ -210,7 +210,6 @@ const FormExamplePage = (props: Props) => {
                     variant="contained"
                     onClick={submitForm}
                     className="ml-auto mt-8"
-                    isLoading={isLoading}
                   >
                     Guardar
                   </Button>

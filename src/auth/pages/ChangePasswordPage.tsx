@@ -1,7 +1,7 @@
 import TextField from "@material-ui/core/TextField";
 import AuthLayout from "auth/components/AuthLayout";
 import React from "react";
-import Button from "shared/components/Button";
+import Button from "vadiun-button"
 import ChangePasswordIlustration from "../../assets/change-password.svg";
 interface Props {}
 

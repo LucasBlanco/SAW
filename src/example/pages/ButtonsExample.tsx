@@ -6,7 +6,8 @@ import * as Yup from "yup";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { ExampleModel } from "example/models/Example";
 import dayjs from "dayjs";
-import Button from "shared/components/Button";
+//import Button from "vadiun-button"
+import Button from "vadiun-button";
 import PageHeader from "../../layout/components/PageHeader";
 import TableExample from "./TableExample";
 import PageContainer from "../../layout/components/PageContainer";
@@ -57,13 +58,7 @@ const ButtonsExample = () => {
                             <Button variant="outlined" color="orange">Orange</Button>
                             <Button variant="outlined" color="green">Green</Button>
                         </div>
-                        <div className="flex space-x-4">
 
-                            <Button variant="contained" isLoading={true} color="blue">Blue</Button>
-                            <Button variant="outlined" isLoading={true} color="red">Red</Button>
-                            <Button variant="light" isLoading={true} color="orange">Orange</Button>
-                            <Button variant="text" isLoading={true} color="green">Green</Button>
-                        </div>
                         <div className="flex space-x-4">
 
                             <Button variant="contained" disabled={true} color="blue">Blue</Button>

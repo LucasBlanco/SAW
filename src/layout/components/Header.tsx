@@ -1,6 +1,6 @@
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import Button from "shared/components/Button";
+import Button from "vadiun-button"
 import React from "react";
 import Logo from "../../assets/logo.png";
 import SearchIcon from "@material-ui/icons/Search";

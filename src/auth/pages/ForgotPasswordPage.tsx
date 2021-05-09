@@ -1,7 +1,7 @@
 import { TextField } from "formik-material-ui";
 import AuthLayout from "auth/components/AuthLayout";
 import React, { useState } from "react";
-import Button from "shared/components/Button";
+import Button from "vadiun-button"
 import ForgotPasswordIlustration from "../../assets/forgot-password.svg";
 import * as Yup from "yup";
 import { Field, Form, Formik, FormikHelpers } from "formik";
@@ -71,7 +71,6 @@ const ForgotPasswordPage = (props: Props) => {
                     className="w-full"
                     variant="contained"
                     disabled={isSubmitting}
-                    isLoading={isSubmitting}
                   >
                     Send email
                   </Button>

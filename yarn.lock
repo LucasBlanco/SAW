@@ -9611,6 +9611,11 @@ prr@~1.0.1:
   resolved "https://registry.yarnpkg.com/prr/-/prr-1.0.1.tgz#d3fc114ba06995a45ec6893f484ceb1d78f5f476"
   integrity sha1-0/wRS6BplaRexok/SEzrHXj19HY=
 
+prueba-component2@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/prueba-component2/-/prueba-component2-1.0.1.tgz#120794e3e4dc4c5bb3f2ecb34b4541c5ce9222eb"
+  integrity sha512-OwwVPHB1K5bbAzNatEZ9Dth4oBxeCoq1fi7ZTOHsOAOjoKcoBgVjLO8rwKXIzbQUJ1bJGUyRl7IKhB0AUujt7w==
+
 psl@^1.1.28:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/psl/-/psl-1.8.0.tgz#9326f8bcfb013adcc005fdff056acce020e51c24"
@@ -11904,6 +11909,14 @@ v8-to-istanbul@^7.0.0:
     "@types/istanbul-lib-coverage" "^2.0.1"
     convert-source-map "^1.6.0"
     source-map "^0.7.3"
+
+vadiun-button@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vadiun-button/-/vadiun-button-0.1.1.tgz#833a27dfa3396e8d70440bcd7903abefff39511d"
+  integrity sha512-5N95yuz6wgL73d9aCFZWDMIrNct4zd7wbv6uPnmCN0B+0kMUsmD9yyaP+l4Ew4d0BTWXd06bz/mJz8tk0BHFlA==
+  dependencies:
+    autoprefixer "^9"
+    postcss "^7"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.4"

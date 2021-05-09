@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-
+import HelloWorld from "prueba-component2"
 interface Props {
   ilustration: any;
   title: string;
@@ -9,6 +9,7 @@ interface Props {
 const AuthLayout: FC<Props> = (props) => {
   return (
     <div className="flex h-full w-full">
+        <HelloWorld/>
       <div className="hidden md:flex w-1/3 flex-col items-center h-full p-12 bg-gray-600 shadow-md">
         <h1 className="text-2xl font-bold m-12 text-white">LOGO</h1>
         <h2 className="text-4xl font-bold text-white">{props.title}</h2>

@@ -5,7 +5,7 @@ import EditExample from "./EditExample";
 import { ExampleModel } from "example/models/Example";
 import useExamples from "example/services/example-service";
 import usePromise from "shared/hooks/usePromise";
-import Button from "shared/components/Button";
+import Button from "vadiun-button"
 import { useSpinner } from "shared/services/spinner-service";
 import { useRequest } from "shared/services/request-service";
 import PageContainer from "layout/components/PageContainer";

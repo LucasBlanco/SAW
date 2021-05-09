@@ -1,5 +1,5 @@
 import MUIButton from "@material-ui/core/Button";
-import Button from "shared/components/Button";
+import Button from "vadiun-button"
 import React, { useState } from "react";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import GoogleIcon from "../../assets/google-plus.png";
@@ -89,7 +89,6 @@ const LoginPage = (props: Props) => {
                   className="w-full"
                   variant="contained"
                   disabled={isSubmitting}
-                  isLoading={isSubmitting}
                 >
                   Login
                 </Button>
