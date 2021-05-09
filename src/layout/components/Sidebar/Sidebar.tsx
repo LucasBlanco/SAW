@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import SidebarItem from "./SidebarItem";
 import { useHistory } from "react-router-dom";
-import { Button } from "../../../shared/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -14,8 +11,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SidebarHeader from "./SidebarHeader";
 import Logo from "../../../assets/logo.png";
-import useWindowSize from "shared/hooks/useWindowSize";
-import useResponsiveBreakpoint from "shared/hooks/useResponsiveBreakpoint";
 
 export type SideBarStatus =
   | {
@@ -66,7 +61,7 @@ const Sidebar = ({ status, toggleCollapse }: Props) => {
 
   const colapsedClass = () => {
     const baseClass =
-      "bg-blueGray-800 h-full shadow-md flex-shrink-0 transition-all duration-300 ease-in-out";
+      "bg-blueGray-800 min-h-full shadow-md flex-shrink-0 transition-all duration-300 ease-in-out";
     if (status.platform === "mobile") {
       const mobileBaseClass = `${baseClass} fixed`;
       const mobileClosedClass = `${mobileBaseClass} hidden hide-sidebar`;

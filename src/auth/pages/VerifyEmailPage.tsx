@@ -1,11 +1,11 @@
 import LinearProgress from "@material-ui/core/LinearProgress";
 import AuthLayout from "auth/components/AuthLayout";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import VerifyEmailIlustration from "../../assets/verify-email.svg";
 import CheckIcon from "@material-ui/icons/Check";
-import { AuthContextType } from "auth/services/AuthService";
-import { useLocation } from "react-router-dom";
-import { httpClient } from "shared/services/http/httpClient";
+import {useLocation} from "react-router-dom";
+import {httpClient} from "shared/services/http/httpClient";
+import Logo from "../../assets/logo.png";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -27,6 +27,7 @@ const VerifyEmailPage = (props: Props) => {
       ilustration={VerifyEmailIlustration}
       title="Verify Email"
       subtitle="Thank you for being part of Vadiun."
+      logo={Logo}
     >
       <div className="max-w-xl flex flex-col items-center">
         <h1 className="text-center font-bold text-2xl my-4">Verify email</h1>

@@ -1,11 +1,14 @@
-import { TextField } from "formik-material-ui";
+import {TextField} from "formik-material-ui";
 import AuthLayout from "auth/components/AuthLayout";
 import React, { useState } from "react";
 import Button from "vadiun-button"
+
 import ForgotPasswordIlustration from "../../assets/forgot-password.svg";
 import * as Yup from "yup";
-import { Field, Form, Formik, FormikHelpers } from "formik";
-import { AuthContextType } from "auth/services/AuthService";
+import {Field, Form, Formik, FormikHelpers} from "formik";
+import {AuthContextType} from "auth/services/AuthService";
+import Logo from "../../assets/logo.png";
+
 interface FormSchema {
   email: string;
 }
@@ -36,6 +39,7 @@ const ForgotPasswordPage = (props: Props) => {
       ilustration={ForgotPasswordIlustration}
       title="Forgot Password"
       subtitle="Dont worry, we'll send you and email to recover your password."
+      logo={Logo}
     >
       <div className="max-w-xl flex flex-col items-center w-full md:w-1/2 h-60 ">
         <h1 className="text-center font-bold text-2xl my-4">

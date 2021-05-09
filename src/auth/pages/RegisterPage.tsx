@@ -1,10 +1,12 @@
-import { TextField } from "@material-ui/core";
+import {TextField} from "@material-ui/core";
 import AuthLayout from "auth/components/AuthLayout";
 import React, { useState } from "react";
 import Button from "vadiun-button"
 import Step from "shared/components/Stepper/Step";
 import Stepper from "shared/components/Stepper/Stepper";
 import RegisterIlustration from "../../assets/sign-up.svg";
+import Logo from "../../assets/logo.png";
+
 interface Props {}
 
 const RegisterPage = (props: Props) => {
@@ -14,6 +16,7 @@ const RegisterPage = (props: Props) => {
       ilustration={RegisterIlustration}
       title="Sign up to Vadiun"
       subtitle="Make your dreams come true"
+      logo={Logo}
     >
       <div className="w-full flex flex-col items-center justify-center">
         <Stepper value={step}>

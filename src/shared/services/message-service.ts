@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSnackbar } from 'notistack';
+import {useSnackbar} from 'notistack';
 
 
 export interface MessageServiceInterface {
@@ -24,11 +24,17 @@ export const useMessage: () => MessageServiceInterface = () => {
             type?: 'success' | 'error' | 'info' | 'default';
         }) => {
         return promise.then(result => {
-            console.log('showMessage');
-            enqueueSnackbar(options?.successMessage ? options?.successMessage : 'La accion se realizo con exito', { variant: 'success' });
+            enqueueSnackbar(options?.successMessage ? options?.successMessage : 'La accion se realizo con exito', { variant: 'success',anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                }, });
             return result;
         }).catch(error => {
-            enqueueSnackbar(options?.successMessage ? options?.successMessage : 'Hubo un error al realizar la accion', { variant: 'error' });
+            console.log(error)
+            enqueueSnackbar(options?.errorMessage ? options?.errorMessage : error.response.data.error, { variant: 'error',anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                }, });
             throw error;
         });
     };

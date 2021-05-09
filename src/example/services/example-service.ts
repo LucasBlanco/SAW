@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+import useAsyncData from "shared/hooks/useAsyncData";
 import { ExampleModel } from "../models/Example";
 
 let examples: ExampleModel[] = [
@@ -27,7 +29,8 @@ const useExamples = () => {
     return createPromise(example);
   };
 
-  const getExamples = () => {
+  const getExamples = (id: number) => {
+    console.log(id);
     return createPromise<ExampleModel[]>(examples);
   };
 
@@ -40,7 +43,6 @@ const useExamples = () => {
     removeExample,
     editExample,
     getExamples,
-    getExample,
   };
 };
 

@@ -30,8 +30,20 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
     }`;
   };
 
+  const renderImg = () => {
+    if (typeof field.value === "string")
+      return <img
+          src={field.value}
+          className="object-cover rounded-md"
+      />
+    return <img
+        src={URL.createObjectURL(field.value)}
+        className="object-cover rounded-md"
+    />
+  }
+
   return (
-    <>
+    <div>
       <input
         ref={inputRef}
         style={{ display: "none" }}
@@ -58,12 +70,7 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
             <FontAwesomeIcon icon={faPen} />
           </Button>
         </div>
-        {field.value ? (
-          <img
-            src={URL.createObjectURL(field.value)}
-            className="object-cover rounded-md"
-          />
-        ) : (
+        {field.value ? renderImg() : (
           <FontAwesomeIcon
             className={`text-gray-300 text-5xl m-auto`}
             icon={faCamera}
@@ -73,7 +80,7 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
       {form.errors[field.name] && (
         <p style={{ color: "red" }}>{form.errors[field.name]}</p>
       )}
-    </>
+    </div>
   );
 }
 
