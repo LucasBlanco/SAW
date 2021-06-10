@@ -1,6 +1,6 @@
 import TextField from "@material-ui/core/TextField";
 import React from "react";
-import Button from "vadiun-button";
+import { Button } from "@vadiun/react-components";
 
 interface Props {}
 
@@ -35,7 +35,6 @@ const ChangePassword = (props: Props) => {
           fullWidth
           className="bg-white"
         />
-
       </form>
     </div>
   );

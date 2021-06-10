@@ -24,7 +24,7 @@ import {
 import PageContainer from "layout/components/PageContainer";
 import PageHeader from "layout/components/PageHeader";
 import React, { useState } from "react";
-import Button from "vadiun-button"
+import { Button, ImageUpload } from "@vadiun/react-components";
 import * as Yup from "yup";
 import ptAr from "dayjs/locale/es";
 import dayjs, { Dayjs } from "dayjs";
@@ -146,8 +146,8 @@ const FormExamplePage = (props: Props) => {
                       Label={{ label: "Accept terms and conditions" }}
                     />
                     <Field
-                      component={MUIFileUpload}
-                      className="aspect-w-3 aspect-h-1 "
+                      component={ImageUpload}
+                      className="aspect-w-3 aspect-h-1"
                       name="picture"
                     />
                     <Field component={RadioGroup} name="gender">

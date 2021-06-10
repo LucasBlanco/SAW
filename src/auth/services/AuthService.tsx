@@ -25,7 +25,8 @@ export const AuthProvider = (props: any) => {
 
   const login = async (x: LoginCredentials) => {
     console.log("LOGIN", x);
-    const { token } = await authRepo.login(x);
+    // const { token } = await authRepo.login(x);
+    const token = "token";
     localStorage.setItem("token", token);
     setIsAuthenticated(true);
     history.push("/main/landing");

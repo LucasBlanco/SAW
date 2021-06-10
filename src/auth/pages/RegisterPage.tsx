@@ -1,7 +1,7 @@
-import {TextField} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import AuthLayout from "auth/components/AuthLayout";
 import React, { useState } from "react";
-import Button from "vadiun-button"
+import { Button } from "@vadiun/react-components";
 import Step from "shared/components/Stepper/Step";
 import Stepper from "shared/components/Stepper/Stepper";
 import RegisterIlustration from "../../assets/sign-up.svg";

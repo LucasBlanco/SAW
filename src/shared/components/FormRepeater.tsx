@@ -1,6 +1,6 @@
 import { FieldArrayRenderProps } from "formik";
 import React, { FC } from "react";
-import  Button  from "vadiun-button";
+import { Button } from "@vadiun/react-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 interface Props {

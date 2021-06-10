@@ -4,42 +4,35 @@ import CreateExample from "./CreateExample";
 import EditExample from "./EditExample";
 import { ExampleModel } from "example/models/Example";
 import useExamples from "example/services/example-service";
-import usePromise from "shared/hooks/usePromise";
-import Button from "vadiun-button"
-import { useSpinner } from "shared/services/spinner-service";
-import { useRequest } from "shared/services/request-service";
+import { Button } from "@vadiun/react-components";
 import PageContainer from "layout/components/PageContainer";
 import PageHeader from "layout/components/PageHeader";
+import { useSuperMutation, useSuperQuery } from "@vadiun/react-hooks";
 
 const CrudExample = () => {
   const { getExamples, ...ExampleService } = useExamples();
-  const { handleSpinner } = useSpinner();
-  const { handleRequest } = useRequest();
   const [id, setId] = useState(1);
-  const [examples, helpers] = usePromise(() => handleSpinner(getExamples(id)), [
-    id,
-  ]);
-  const [visiblePage, setVisiblePage] = useState<"table" | "create" | "edit">(
-    "table"
-  );
+  const editMutation = useSuperMutation(ExampleService.editExample);
+  const addMutation = useSuperMutation(ExampleService.addExample);
+  const removeMutation = useSuperMutation(ExampleService.removeExample);
+  const examplesQuery = useSuperQuery(() => getExamples(id));
+  const [visiblePage, setVisiblePage] =
+    useState<"table" | "create" | "edit">("table");
   const [editingExample, setEditingExample] = useState<ExampleModel>();
 
   async function edit(example: ExampleModel) {
-    await handleRequest(ExampleService.editExample(example));
-    helpers.reload();
+    await editMutation.mutate(example);
+    examplesQuery.reload();
   }
 
   async function create(example: ExampleModel) {
-    await handleRequest(ExampleService.addExample(example), {
-      successMessage: "El ejemplo fue creado con exito",
-      errorMessage: "Hubo un error al crear el ejemplo",
-    });
-    helpers.reload();
+    await addMutation.mutate(example);
+    examplesQuery.reload();
   }
 
   async function remove(example: ExampleModel) {
-    await handleRequest(ExampleService.removeExample(example));
-    helpers.reload();
+    await removeMutation.mutate(example);
+    examplesQuery.reload();
   }
 
   function selectToEdit(example: ExampleModel) {
@@ -70,7 +63,7 @@ const CrudExample = () => {
             Next id
           </Button>
           <TableExample
-            examples={examples!}
+            examples={examplesQuery.data!}
             selectToEdit={selectToEdit}
             delete={remove}
           />

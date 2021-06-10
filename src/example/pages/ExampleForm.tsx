@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { ExampleModel } from "example/models/Example";
 import dayjs from "dayjs";
-import Button from "vadiun-button"
+import { Button } from "@vadiun/react-components";
 
 const ExampleSchema = Yup.object().shape({
   email: Yup.string()

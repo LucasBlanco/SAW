@@ -1,5 +1,5 @@
 import MUIButton from "@material-ui/core/Button";
-import Button from "vadiun-button"
+import { Button } from "@vadiun/react-components";
 import React, { useState } from "react";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import GoogleIcon from "../../assets/google-plus.png";
@@ -7,11 +7,11 @@ import LoginIlustration from "../../assets/login.svg";
 import Logo from "../../assets/logo.png";
 import AuthLayout from "auth/components/AuthLayout";
 import * as Yup from "yup";
-import {AuthContextType} from "auth/services/AuthService";
-import {Field, Form, Formik, FormikHelpers} from "formik";
-import {TextField} from "formik-material-ui";
-import {Link} from "react-router-dom";
-import usePromiseStatus from "../../shared/hooks/usePromiseStatus";
+import { AuthContextType } from "auth/services/AuthService";
+import { Field, Form, Formik, FormikHelpers } from "formik";
+import { TextField } from "formik-material-ui";
+import { Link } from "react-router-dom";
+import { useSuperMutation } from "@vadiun/react-hooks";
 
 interface FormSchema {
   email: string;
@@ -36,19 +36,23 @@ const LoginPage = (props: Props) => {
     email: "",
     password: "",
   };
-  const {isError, isLoading, handlePromise} = usePromiseStatus()
+  const loginMutation = useSuperMutation(props.authSrv.login);
 
   const submit = async (
     value: FormSchema,
     formikHelpers: FormikHelpers<FormSchema>
   ) => {
-    await handlePromise(() => props.authSrv.login(value));
+    await loginMutation.mutate(value);
 
     formikHelpers.resetForm();
   };
 
   return (
-    <AuthLayout ilustration={LoginIlustration} logo={Logo} title="Bienvenido a Las Leñas Traslados">
+    <AuthLayout
+      ilustration={LoginIlustration}
+      logo={Logo}
+      title="Bienvenido a Las Leñas Traslados"
+    >
       <div className="max-w-xl flex flex-col items-center">
         <h1 className="text-center font-bold text-2xl my-4">Login</h1>
         <p>
@@ -62,7 +66,7 @@ const LoginPage = (props: Props) => {
         >
           {({ handleSubmit, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
-              {isError && "la concha de tu madre"}
+              {loginMutation.isError && loginMutation.error}
               <Field
                 label="Email"
                 variant="outlined"
@@ -91,7 +95,7 @@ const LoginPage = (props: Props) => {
               </Link>
               <div className="w-full my-8">
                 <Button
-                  color="primary"
+                  color="blue"
                   className="w-full"
                   variant="contained"
                   type="submit"

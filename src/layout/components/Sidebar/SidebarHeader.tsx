@@ -4,7 +4,7 @@ import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import SidebarItem from "./SidebarItem";
 import { useHistory } from "react-router-dom";
-import Button  from "vadiun-button";
+import { Button } from "@vadiun/react-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDoubleLeft,
