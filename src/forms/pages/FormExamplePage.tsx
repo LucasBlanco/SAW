@@ -24,7 +24,11 @@ import {
 import PageContainer from "layout/components/PageContainer";
 import PageHeader from "layout/components/PageHeader";
 import React, { useState } from "react";
-import { Button, ImageUpload } from "@vadiun/react-components";
+import {
+  Button,
+  FormikImageUpload,
+  FormikAutocompleteAsync,
+} from "@vadiun/react-components";
 import * as Yup from "yup";
 import ptAr from "dayjs/locale/es";
 import dayjs, { Dayjs } from "dayjs";
@@ -32,9 +36,8 @@ import {
   Autocomplete,
   AutocompleteRenderInputParams,
 } from "formik-material-ui-lab";
-import { FormRepeater, MUIFileUpload } from "shared/components";
+import { FormRepeater } from "shared/components";
 import Card from "../../shared/components/Card/Card";
-import AutocompleteAsync from "shared/components/AutocompleteAsync";
 
 const ExampleSchema = Yup.object().shape({
   email: Yup.string()
@@ -104,7 +107,7 @@ const FormExamplePage = (props: Props) => {
                   <Form className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                     <Field
                       name="film"
-                      component={AutocompleteAsync}
+                      component={FormikAutocompleteAsync}
                       getOptionLabel={(option: any) =>
                         option ? option.title : ""
                       }
@@ -146,7 +149,7 @@ const FormExamplePage = (props: Props) => {
                       Label={{ label: "Accept terms and conditions" }}
                     />
                     <Field
-                      component={ImageUpload}
+                      component={FormikImageUpload}
                       className="aspect-w-3 aspect-h-1"
                       name="picture"
                     />

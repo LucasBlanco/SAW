@@ -2275,9 +2275,9 @@
     eslint-visitor-keys "^2.0.0"
 
 "@vadiun/react-components@^1.0.0":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@vadiun/react-components/-/react-components-1.1.4.tgz#e581330fb36fa98d15da7d8a448916ef80114994"
-  integrity sha512-NHANeQ3GZWEOX9E+qdrmfeT/TM5M4ComN5bpB6gWslN8rH/aj6n1eHhTy6hPtxzTzUvWE5QYUYvjN7N5vQ8qTA==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@vadiun/react-components/-/react-components-1.2.0.tgz#10bd65dd3f3ad6581da0838065a67b6a5b8bb88f"
+  integrity sha512-Zu4eUBPBqmuXnnEnM1TBzl8tyoo45ifuZt8oMlUIpnGoQAoBcXbJZ8QTt948AXOH9pQzMVNM6kv0Xlb7ZAnKfQ==
   dependencies:
     react-icons "^4.2.0"
 

@@ -2,8 +2,7 @@ import { TextField } from "@material-ui/core";
 import AuthLayout from "auth/components/AuthLayout";
 import React, { useState } from "react";
 import { Button } from "@vadiun/react-components";
-import Step from "shared/components/Stepper/Step";
-import Stepper from "shared/components/Stepper/Stepper";
+import { Stepper } from "@vadiun/react-components";
 import RegisterIlustration from "../../assets/sign-up.svg";
 import Logo from "../../assets/logo.png";
 
@@ -19,11 +18,23 @@ const RegisterPage = (props: Props) => {
       logo={Logo}
     >
       <div className="w-full flex flex-col items-center justify-center">
-        <Stepper value={step}>
-          <Step title="Account" value={1} description="Vadiun account" />
-          <Step title="Personal" value={2} description="Personal information" />
-          <Step title="Address" value={3} description="Residential address" />
-        </Stepper>
+        <Stepper.Container value={step}>
+          <Stepper.Step
+            title="Account"
+            value={1}
+            description="Vadiun account"
+          />
+          <Stepper.Step
+            title="Personal"
+            value={2}
+            description="Personal information"
+          />
+          <Stepper.Step
+            title="Address"
+            value={3}
+            description="Residential address"
+          />
+        </Stepper.Container>
 
         {step === 1 && (
           <form
