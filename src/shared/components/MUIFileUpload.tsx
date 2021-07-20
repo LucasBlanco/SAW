@@ -5,7 +5,7 @@ import { FieldProps, FormikProps } from "formik";
 
 import { faCamera, faEdit, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from ".";
+import { Button } from "@vadiun/react-components";
 import { overrideTailwindClasses } from "tailwind-override";
 
 function MUIFileUpload(props: FieldProps & { className?: string }) {
@@ -32,15 +32,14 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
 
   const renderImg = () => {
     if (typeof field.value === "string")
-      return <img
-          src={field.value}
-          className="object-cover rounded-md"
-      />
-    return <img
+      return <img src={field.value} className="object-cover rounded-md" />;
+    return (
+      <img
         src={URL.createObjectURL(field.value)}
         className="object-cover rounded-md"
-    />
-  }
+      />
+    );
+  };
 
   return (
     <div>
@@ -70,7 +69,9 @@ function MUIFileUpload(props: FieldProps & { className?: string }) {
             <FontAwesomeIcon icon={faPen} />
           </Button>
         </div>
-        {field.value ? renderImg() : (
+        {field.value ? (
+          renderImg()
+        ) : (
           <FontAwesomeIcon
             className={`text-gray-300 text-5xl m-auto`}
             icon={faCamera}

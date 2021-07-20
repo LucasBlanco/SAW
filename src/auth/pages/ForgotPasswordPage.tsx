@@ -1,11 +1,12 @@
-import {TextField} from "formik-material-ui";
+import { TextField } from "formik-material-ui";
 import AuthLayout from "auth/components/AuthLayout";
-import React, {useState} from "react";
-import Button from "shared/components/Button";
+import React, { useState } from "react";
+import { Button } from "@vadiun/react-components";
+
 import ForgotPasswordIlustration from "../../assets/forgot-password.svg";
 import * as Yup from "yup";
-import {Field, Form, Formik, FormikHelpers} from "formik";
-import {AuthContextType} from "auth/services/AuthService";
+import { Field, Form, Formik, FormikHelpers } from "formik";
+import { AuthContextType } from "auth/services/AuthService";
 import Logo from "../../assets/logo.png";
 
 interface FormSchema {
@@ -74,7 +75,6 @@ const ForgotPasswordPage = (props: Props) => {
                     className="w-full"
                     variant="contained"
                     disabled={isSubmitting}
-                    isLoading={isSubmitting}
                   >
                     Send email
                   </Button>

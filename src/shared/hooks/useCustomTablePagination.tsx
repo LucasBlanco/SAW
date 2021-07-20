@@ -1,11 +1,11 @@
 import { useServerSide } from "@lblanco/server-side-table";
-import { useSpinner } from "../services/spinner-service";
 import {
   serverSideHandler,
   serverSidePaginator,
   serverSideFilter,
   serverSideOrder,
 } from "@lblanco/server-side-table";
+import { useSpinner } from "@vadiun/react-hooks";
 
 export interface ServerResponse<T> {
   total: number;
@@ -39,11 +39,14 @@ declare type ServerRequestFn<T> = (
 ) => Promise<LaravelPaginated<T>>;
 
 export function useCustomTablePagination<T>(requestFn: ServerRequestFn<T>) {
-  const { handleSpinner } = useSpinner();
+  const showSpinner = useSpinner();
 
   return useServerSide<T>({
-    requestFn: (params) =>
-      handleSpinner(requestFn(params)).then(customRequestAdapter),
+    requestFn: async (params) => {
+      const promise = requestFn(params);
+      showSpinner(promise);
+      return customRequestAdapter(await promise);
+    },
     tableHandler: customTableHandler,
   });
 }

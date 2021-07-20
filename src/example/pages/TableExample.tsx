@@ -4,7 +4,7 @@ import MUIDataTable from "mui-datatables";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import CreateIcon from "@material-ui/icons/Create";
 import DeleteIcon from "@material-ui/icons/Delete";
-import Button from "shared/components/Button";
+import { Button } from "@vadiun/react-components";
 interface Props {
   examples: ExampleModel[];
   selectToEdit: (x: ExampleModel) => void;

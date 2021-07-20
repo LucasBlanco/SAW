@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import useAsyncData from "shared/hooks/useAsyncData";
 import { ExampleModel } from "../models/Example";
 
 let examples: ExampleModel[] = [

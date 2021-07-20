@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { ExampleModel } from "example/models/Example";
 import dayjs from "dayjs";
-import Button from "shared/components/Button";
+import { Button } from "@vadiun/react-components";
 
 const ExampleSchema = Yup.object().shape({
   email: Yup.string()
@@ -69,7 +69,6 @@ const ExampleForm = (props: Props) => {
             variant="contained"
             onClick={submitForm}
             className="ml-auto mt-8"
-            isLoading={isLoading}
           >
             Guardar
           </Button>

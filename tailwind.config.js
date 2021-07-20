@@ -14,7 +14,7 @@ module.exports = {
   },
   theme: {
     colors: {
-      primary: colors.lightBlue,
+      primary: colors.rose,
       secondary: {
         50: "#f0f9ff",
         100: "#e0f2fe",

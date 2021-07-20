@@ -27,6 +27,13 @@
   .ellipsis {
     @apply overflow-ellipsis whitespace-nowrap overflow-hidden;
   }
+  .title {
+    @apply text-gray-700 font-medium
+  }
+  .subtitle {
+    @apply text-gray-400 font-medium
+
+  }
 }
 
 @layer utilities {
