@@ -34,7 +34,7 @@ function customRequestAdapter<T>(res: LaravelPaginated<T>): ServerResponse<T> {
   return { total: res.meta.total, data: res.data };
 }
 
-declare type ServerRequestFn<T> = (
+export type ServerRequestFn<T> = (
   params: string
 ) => Promise<LaravelPaginated<T>>;
 
