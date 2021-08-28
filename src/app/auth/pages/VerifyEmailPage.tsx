@@ -1,11 +1,11 @@
 import LinearProgress from "@material-ui/core/LinearProgress";
-import AuthLayout from "auth/components/AuthLayout";
-import React, {useEffect, useState} from "react";
-import VerifyEmailIlustration from "../../assets/verify-email.svg";
+import AuthLayout from "app/auth/components/AuthLayout";
+import React, { useEffect, useState } from "react";
+import VerifyEmailIlustration from "assets/verify-email.svg";
 import CheckIcon from "@material-ui/icons/Check";
-import {useLocation} from "react-router-dom";
-import {httpClient} from "shared/services/http/httpClient";
-import Logo from "../../assets/logo.png";
+import { useLocation } from "react-router-dom";
+import { httpClient } from "shared/services/http/httpClient";
+import Logo from "assets/logo.png";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);

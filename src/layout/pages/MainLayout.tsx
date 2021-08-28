@@ -93,7 +93,6 @@ const MainLayout = (props: Props) => {
           <Route path="/main/forms/buttons">
             <ButtonsExample />
           </Route>
-
         </Switch>
       </div>
     </div>

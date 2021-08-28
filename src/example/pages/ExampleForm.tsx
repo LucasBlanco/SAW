@@ -1,11 +1,8 @@
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { TextField } from "formik-material-ui";
-import { DatePicker } from "formik-material-ui-pickers";
 import React, { useState } from "react";
 import * as Yup from "yup";
-import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { ExampleModel } from "example/models/Example";
-import dayjs from "dayjs";
 import { Button } from "@vadiun/react-components";
 
 const ExampleSchema = Yup.object().shape({

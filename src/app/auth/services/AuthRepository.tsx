@@ -1,5 +1,5 @@
-import {httpClient} from "shared/services/http/httpClient";
-import {User} from "auth/models/User";
+import { httpClient } from "shared/services/http/httpClient";
+import { User } from "app/auth/models/User";
 import React from "react";
 
 const useAuthRepository = () => {
@@ -9,8 +9,8 @@ const useAuthRepository = () => {
 
   const reloadUsers = () => {};
 
-  const login = (x: { email: string; password: string }) =>  httpClient.post("login", x)
-
+  const login = (x: { email: string; password: string }) =>
+    httpClient.post("login", x);
 
   const add = (user: User) => httpClient.post("users", user);
 
