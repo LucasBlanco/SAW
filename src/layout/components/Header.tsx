@@ -14,6 +14,9 @@ import PostAddIcon from "@material-ui/icons/PostAdd";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import { Link } from "react-router-dom";
+import { useAuth } from "app/auth/services/AuthService";
+
 interface Props {
   toggleSidebar: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
@@ -39,14 +42,9 @@ const StyledMenuItem = withStyles((theme) => ({
 const Header = (props: Props) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const history = useHistory();
-
+  const authService = useAuth();
   const onOpenProfileMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-  };
-
-  const navigateTo = (url: string) => {
-    history.push(url);
-    setAnchorEl(null);
   };
   return (
     <>
@@ -69,15 +67,6 @@ const Header = (props: Props) => {
             <SearchIcon className="absolute left-3 top-1" />
           </div>
           <div className="flex gap-3 items-center">
-            <div className="hidden md:inline-flex">
-              <Button>
-                <span className="whitespace-nowrap">How it works</span>
-              </Button>
-            </div>
-            <Button onClick={() => navigateTo("/main/login")}>Login</Button>
-            <Button variant="contained">
-              <span className="whitespace-nowrap">Sign up</span>
-            </Button>
             <div
               className="text-primary-500 cursor-pointer"
               onClick={onOpenProfileMenu}
@@ -98,29 +87,19 @@ const Header = (props: Props) => {
         }}
         getContentAnchorEl={null}
       >
-        <StyledMenuItem onClick={() => navigateTo("/main/profile")}>
+        <Link to="/main/profile">
+          <StyledMenuItem>
+            <ListItemIcon>
+              <FaceIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Profile" />
+          </StyledMenuItem>
+        </Link>
+        <StyledMenuItem onClick={authService.logout}>
           <ListItemIcon>
             <FaceIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Profile" />
-        </StyledMenuItem>
-        <StyledMenuItem onClick={() => navigateTo("/main/my-ads")}>
-          <ListItemIcon>
-            <CreateIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="My ads" />
-        </StyledMenuItem>
-        <StyledMenuItem onClick={() => navigateTo("/main/create-ad")}>
-          <ListItemIcon>
-            <PostAddIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Create ad" />
-        </StyledMenuItem>
-        <StyledMenuItem onClick={() => navigateTo("/login")}>
-          <ListItemIcon>
-            <ExitToAppIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Logout" />
+          <ListItemText primary="Exit" />
         </StyledMenuItem>
       </Menu>
     </>

@@ -7,9 +7,7 @@ import {
   Radio,
   TextField as MUITextField,
 } from "@material-ui/core";
-import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Field, FieldArray, Form, Formik, FormikHelpers } from "formik";
-import DayJsUtils from "@date-io/dayjs";
 import {
   CheckboxWithLabel,
   RadioGroup,
@@ -30,14 +28,10 @@ import {
   FormikAutocompleteAsync,
 } from "@vadiun/react-components";
 import * as Yup from "yup";
-import ptAr from "dayjs/locale/es";
-import dayjs, { Dayjs } from "dayjs";
-import {
-  Autocomplete,
-  AutocompleteRenderInputParams,
-} from "formik-material-ui-lab";
+import { AutocompleteRenderInputParams } from "formik-material-ui-lab";
 import { FormRepeater } from "shared/components";
 import Card from "../../shared/components/Card/Card";
+import moment, { Moment } from "moment";
 
 const ExampleSchema = Yup.object().shape({
   email: Yup.string()
@@ -73,7 +67,7 @@ const FormExamplePage = (props: Props) => {
     gender: "male",
     country: "argentina",
     enabled: false,
-    birthdate: dayjs(),
+    birthdate: moment(),
     film: "",
     repeat: [""],
     picture: undefined,
@@ -190,24 +184,20 @@ const FormExamplePage = (props: Props) => {
                         label="Enabled"
                       />
                     </FormGroup>
-                    <MuiPickersUtilsProvider locale={ptAr} utils={DayJsUtils}>
-                      <Field
-                        component={KeyboardDatePicker}
-                        label="Birth Date"
-                        name="birthdate"
-                        format="DD/MM/YYYY"
-                        inputVariant="outlined"
-                      />
-                    </MuiPickersUtilsProvider>
-                    <MuiPickersUtilsProvider utils={DayJsUtils}>
-                      <Field
-                        component={KeyboardTimePicker}
-                        label="Hora"
-                        name="hora"
-                        inputVariant="outlined"
-                        ampm={false}
-                      />
-                    </MuiPickersUtilsProvider>
+                    <Field
+                      component={KeyboardDatePicker}
+                      label="Birth Date"
+                      name="birthdate"
+                      format="DD/MM/YYYY"
+                      inputVariant="outlined"
+                    />
+                    <Field
+                      component={KeyboardTimePicker}
+                      label="Hora"
+                      name="hora"
+                      inputVariant="outlined"
+                      ampm={false}
+                    />
                     <Field />
                     <div>
                       <FieldArray
@@ -262,7 +252,7 @@ interface FormSchema {
   gender: "male" | "female" | "other";
   country: string;
   enabled: boolean;
-  birthdate: Dayjs;
+  birthdate: Moment;
   film: any;
   repeat: string[];
   picture: File | undefined;

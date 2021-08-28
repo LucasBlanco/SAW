@@ -105,30 +105,23 @@ const Sidebar = ({ status, toggleCollapse }: Props) => {
           icon={<FontAwesomeIcon icon={faUser} size="1x" />}
           label="Landing"
           isCollapsed={isCollapsed}
+          redirectTo="/main/landing"
+        />
+        <SidebarItem
+          icon={<FontAwesomeIcon icon={faUser} size="1x" />}
+          label="Landing2"
+          isCollapsed={isCollapsed}
         >
           <SidebarItem
-            icon={<AssignmentIndIcon />}
-            label="Landing"
-            isSelected={selectedItem === "/main/landing2"}
-            onClick={() => onSelection("/main/landing2")}
-            isCollapsed={isCollapsed}
-          />
-          <SidebarItem
-            icon={<AssignmentIndIcon />}
-            label="Landing"
+            icon={<FontAwesomeIcon icon={faUser} size="1x" />}
+            label="Landing2"
             isCollapsed={isCollapsed}
           >
             <SidebarItem
-              label="Landing"
-              isSelected={selectedItem === "/main/landing4"}
-              onClick={() => onSelection("/main/landing4")}
+              icon={<FontAwesomeIcon icon={faUser} size="1x" />}
+              label="Landing2"
               isCollapsed={isCollapsed}
-            />
-            <SidebarItem
-              label="Landing"
-              isSelected={selectedItem === "/main/landing5"}
-              onClick={() => onSelection("/main/landing5")}
-              isCollapsed={isCollapsed}
+              redirectTo="/main/landing"
             />
           </SidebarItem>
         </SidebarItem>
@@ -138,46 +131,22 @@ const Sidebar = ({ status, toggleCollapse }: Props) => {
           icon={<FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />}
           label="Example"
           isSelected={selectedItem === "/main/example"}
-          onClick={() => onSelection("/main/example")}
+          redirectTo="/main/example"
           isCollapsed={isCollapsed}
         />
         <SidebarItem
           icon={<FontAwesomeIcon icon={faUserAstronaut} size="1x" />}
           label="Profile"
           isSelected={selectedItem === "/main/profile"}
-          onClick={() => onSelection("/main/profile")}
+          redirectTo="/main/profile"
           isCollapsed={isCollapsed}
         />
         <SidebarItem
           icon={<FontAwesomeIcon icon={faUserAstronaut} size="1x" />}
           label="Form"
           isCollapsed={isCollapsed}
-        >
-          <SidebarItem
-            label="Form example"
-            isSelected={selectedItem === "/main/forms/form"}
-            onClick={() => onSelection("/main/forms/form")}
-            isCollapsed={isCollapsed}
-          />
-          <SidebarItem
-            label="Steppers"
-            isSelected={selectedItem === "/main/forms/steppers"}
-            onClick={() => onSelection("/main/forms/steppers")}
-            isCollapsed={isCollapsed}
-          />
-          <SidebarItem
-            label="Buttons"
-            isSelected={selectedItem === "/main/forms/buttons"}
-            onClick={() => onSelection("/main/forms/buttons")}
-            isCollapsed={isCollapsed}
-          />
-          <SidebarItem
-              label="Modal"
-              isSelected={selectedItem === "/main/example/modal"}
-              onClick={() => onSelection("/main/example/modal")}
-              isCollapsed={isCollapsed}
-          />
-        </SidebarItem>
+          redirectTo="/main/forms/form"
+        />
       </div>
     </>
   );

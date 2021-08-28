@@ -1,6 +1,7 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
+  mode: "jit",
   purge: [
     "src/**/*.js",
     "src/**/*.jsx",
@@ -37,12 +38,9 @@ module.exports = {
       green: colors.teal,
       teal: colors.teal,
       purple: colors.purple,
-      blue: colors.lightBlue,
+      blue: colors.sky,
     },
     extend: {
-      backgroundImage: (theme) => ({
-        hero: "url('/src/assets/background.png')",
-      }),
       keyframes: {
         shrink: {
           "0%": { transform: "scale(1)" },

@@ -1,8 +1,7 @@
 import React from "react";
-import { Button } from "@vadiun/react-components";
 
 const Landing = () => {
-  return <>Landing</>;
+  return <p className="mt-[10px]">Landing</p>;
 };
 
 export default Landing;

@@ -1,13 +1,13 @@
 import { TextField } from "formik-material-ui";
-import AuthLayout from "auth/components/AuthLayout";
+import AuthLayout from "app/auth/components/AuthLayout";
 import React, { useState } from "react";
 import { Button } from "@vadiun/react-components";
 
-import ForgotPasswordIlustration from "../../assets/forgot-password.svg";
+import ForgotPasswordIlustration from "assets/forgot-password.svg";
 import * as Yup from "yup";
 import { Field, Form, Formik, FormikHelpers } from "formik";
-import { AuthContextType } from "auth/services/AuthService";
-import Logo from "../../assets/logo.png";
+import { AuthContextType } from "app/auth/services/AuthService";
+import Logo from "assets/logo.png";
 
 interface FormSchema {
   email: string;

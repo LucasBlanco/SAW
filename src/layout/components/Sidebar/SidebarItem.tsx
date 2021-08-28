@@ -2,23 +2,19 @@ import React, { FC, useEffect, useState } from "react";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import { Link } from "react-router-dom";
 interface Props {
   icon?: React.ReactNode;
   label: string;
-  onClick?: () => void;
   isSelected?: boolean;
   isOpen?: boolean;
   onChildOpened?: (x: boolean) => void;
   isCollapsed: boolean;
+  redirectTo?: string;
 }
 
 const SidebarItem: FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const onClick = () => {
-    setIsOpen((open) => !open);
-    props.onClick && props.onClick();
-  };
 
   useEffect(() => {
     if (props.isOpen !== undefined) {
@@ -26,14 +22,20 @@ const SidebarItem: FC<Props> = (props) => {
     }
   }, [props.isOpen]);
 
+  const LinkComponent = props.redirectTo
+    ? Link
+    : (props: any) => (
+        <div {...props} onClick={() => setIsOpen((open) => !open)} />
+      );
+
   return (
     <>
-      <div
+      <LinkComponent
         className={
           "flex px-8 py-2 hover:text-blueGray-200 cursor-pointer items-center " +
           (props.isSelected ? "text-blueGray-200" : "text-blueGray-500")
         }
-        onClick={onClick}
+        to={props.redirectTo}
         style={props.isSelected ? { backgroundColor: "#1a1a27" } : {}}
       >
         {props.icon ? (
@@ -69,7 +71,7 @@ const SidebarItem: FC<Props> = (props) => {
                 style={{ width: 20, marginLeft: "auto" }}
               />
             )}
-      </div>
+      </LinkComponent>
       {!props.isCollapsed ? (
         <div
           className="ml-8 transition-all duration-500 ease-in-out overflow-hidden"
