@@ -8,7 +8,7 @@ interface Props {
   isSelected?: boolean;
 }
 
-const Step = (props: Props) => {
+export const Step = (props: Props) => {
   return (
     <div className="flex m-4">
       <div
@@ -26,5 +26,3 @@ const Step = (props: Props) => {
     </div>
   );
 };
-
-export default Step;

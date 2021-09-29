@@ -5,9 +5,9 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import GoogleIcon from "assets/google-plus.png";
 import LoginIlustration from "assets/login.svg";
 import Logo from "assets/logo.png";
-import AuthLayout from "app/auth/components/AuthLayout";
+import { AuthLayout } from "app/auth/components";
 import * as Yup from "yup";
-import { AuthContextType } from "app/auth/services/AuthService";
+import { AuthContextType } from "app/auth/services";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { TextField } from "formik-material-ui";
 import { Link } from "react-router-dom";
@@ -31,7 +31,7 @@ interface Props {
   authSrv: AuthContextType;
 }
 
-const LoginPage = (props: Props) => {
+export const LoginPage = (props: Props) => {
   const initialValues: FormSchema = {
     email: "",
     password: "",
@@ -138,5 +138,3 @@ const LoginPage = (props: Props) => {
     </AuthLayout>
   );
 };
-
-export default LoginPage;

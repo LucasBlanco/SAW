@@ -1,13 +1,12 @@
 import { TextField } from "formik-material-ui";
-import AuthLayout from "app/auth/components/AuthLayout";
 import React, { useState } from "react";
 import { Button } from "@vadiun/react-components";
-
 import ForgotPasswordIlustration from "assets/forgot-password.svg";
 import * as Yup from "yup";
 import { Field, Form, Formik, FormikHelpers } from "formik";
-import { AuthContextType } from "app/auth/services/AuthService";
 import Logo from "assets/logo.png";
+import { AuthContextType } from "app/auth/services";
+import { AuthLayout } from "app/auth/components";
 
 interface FormSchema {
   email: string;
@@ -22,7 +21,7 @@ interface Props {
   authSrv: AuthContextType;
 }
 
-const ForgotPasswordPage = (props: Props) => {
+export const ForgotPasswordPage = (props: Props) => {
   const [successEmailEmition, setSuccessEmailEmition] = useState(false);
 
   const submit = async (
@@ -102,5 +101,3 @@ const ForgotPasswordPage = (props: Props) => {
     </AuthLayout>
   );
 };
-
-export default ForgotPasswordPage;

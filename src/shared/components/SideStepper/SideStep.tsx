@@ -8,7 +8,7 @@ interface Props {
   value: any;
 }
 
-const SideStep = (props: Props) => {
+export const SideStep = (props: Props) => {
   const arrow = (
     <div
       className={`absolute soft-transition w-6 h-6 -right-3 top-1/2  transform rotate-45 -translate-y-1/2 ${
@@ -30,5 +30,3 @@ const SideStep = (props: Props) => {
     </div>
   );
 };
-
-export default SideStep;

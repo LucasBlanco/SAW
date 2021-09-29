@@ -1,19 +1,13 @@
-import React, {Children} from "react";
+import React from "react";
 
 interface Props {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
-const CardHeader = ({
-    children,
-
-              }: Props) => {
-
-    return (
-            <div className="flex justify-between py-4 px-8 items-center border-solid border-gray-100 border-b-4">
-                {children}
-            </div>
-    );
+export const CardHeader = ({ children }: Props) => {
+  return (
+    <div className="flex justify-between py-4 px-8 items-center border-solid border-gray-100 border-b-4">
+      {children}
+    </div>
+  );
 };
-
-export default CardHeader;

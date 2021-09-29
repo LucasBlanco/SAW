@@ -1,9 +1,7 @@
 import { useHistory } from "react-router-dom";
-
-import { LoginCredentials, Permission, User } from "../models/User";
-
+import { LoginCredentials } from "../models/User";
 import React, { useContext, useEffect, useState } from "react";
-import useAuthRepository from "./AuthRepository";
+import { useAuthRepository } from "./AuthRepository";
 
 export interface AuthContextType {
   isAuthenticated: () => boolean;
@@ -50,7 +48,7 @@ export const AuthProvider = (props: any) => {
   return <AuthContext.Provider value={value} {...props} />;
 };
 
-export const useAuth = () => {
+export const useAuthService = () => {
   const authContext = useContext(AuthContext);
   if (!authContext) {
     throw new Error("useAuth debe estar dentro del proveedor AuthContext");

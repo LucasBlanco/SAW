@@ -1,14 +1,7 @@
 import { httpClient } from "shared/services/http/httpClient";
 import { User } from "app/auth/models/User";
-import React from "react";
 
-const useAuthRepository = () => {
-  //const users = httpClient.get("users");
-
-  //const permissions = httpClient.get("permissions");
-
-  const reloadUsers = () => {};
-
+export const useAuthRepository = () => {
   const login = (x: { email: string; password: string }) =>
     httpClient.post("login", x);
 
@@ -35,5 +28,3 @@ const useAuthRepository = () => {
     forgotPassword,
   };
 };
-
-export default useAuthRepository;

@@ -4,7 +4,7 @@ interface Props {
   value: any;
 }
 
-const SideStepper: FC<Props> = (props) => {
+export const SideStepper: FC<Props> = (props) => {
   return (
     <div>
       {React.Children.map(props.children, (child, index) => {
@@ -17,5 +17,3 @@ const SideStepper: FC<Props> = (props) => {
     </div>
   );
 };
-
-export default SideStepper;

@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from "react";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-import SidebarItem from "./SidebarItem";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import { Button } from "@vadiun/react-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDoubleLeft,
@@ -19,7 +14,7 @@ interface Props {
   logo?: any;
 }
 
-const SidebarHeader = ({
+export const SidebarHeader = ({
   isCollapsed,
   toggleCollapse,
   title,
@@ -54,6 +49,7 @@ const SidebarHeader = ({
               : "font-black text-lg text-gray-50 cursor-pointer mr-4")
           }
           onClick={() => history.push("/main/landing")}
+          alt=""
         />
       ) : null}
       <button
@@ -69,5 +65,3 @@ const SidebarHeader = ({
     </div>
   );
 };
-
-export default SidebarHeader;

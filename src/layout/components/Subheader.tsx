@@ -4,7 +4,7 @@ interface Props {
   categories: string[];
 }
 
-const Subheader = (props: Props) => {
+export const Subheader = (props: Props) => {
   return (
     <div className="bg-primary-500 text-white">
       <div className="container flex overflow-hidden">
@@ -17,5 +17,3 @@ const Subheader = (props: Props) => {
     </div>
   );
 };
-
-export default Subheader;

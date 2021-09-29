@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
-import SidebarItem from "./SidebarItem";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,8 +7,8 @@ import {
   faUserAstronaut,
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
-import SidebarHeader from "./SidebarHeader";
-import Logo from "../../../assets/logo.png";
+import Logo from "assets/logo.png";
+import { SidebarHeader, SidebarItem } from ".";
 
 export type SideBarStatus =
   | {
@@ -38,7 +36,7 @@ const SidebarSection = ({ titulo, isCollapsed }: PropsSidebarSection) => {
   );
 };
 
-const Sidebar = ({ status, toggleCollapse }: Props) => {
+export const Sidebar = ({ status, toggleCollapse }: Props) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isTemporarilyExpanded, setIsTemporarilyExpanded] = useState(false);
   const history = useHistory();
@@ -47,17 +45,12 @@ const Sidebar = ({ status, toggleCollapse }: Props) => {
     status.status === "collapsed" &&
     !isTemporarilyExpanded;
 
-  const onSelection = (menu: string) => {
-    setSelectedItem(menu);
-    history.push(menu);
-  };
-
   useEffect(() => {
     setSelectedItem(history.location.pathname);
     history.listen((hist) => {
       setSelectedItem(hist.pathname);
     });
-  }, []);
+  }, [history]);
 
   const colapsedClass = () => {
     const baseClass =
@@ -145,11 +138,9 @@ const Sidebar = ({ status, toggleCollapse }: Props) => {
           icon={<FontAwesomeIcon icon={faUserAstronaut} size="1x" />}
           label="Form"
           isCollapsed={isCollapsed}
-          redirectTo="/main/forms/form"
+          redirectTo="/main/forms"
         />
       </div>
     </>
   );
 };
-
-export default Sidebar;

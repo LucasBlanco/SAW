@@ -13,7 +13,7 @@ interface Props {
   redirectTo?: string;
 }
 
-const SidebarItem: FC<Props> = (props) => {
+export const SidebarItem: FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -83,5 +83,3 @@ const SidebarItem: FC<Props> = (props) => {
     </>
   );
 };
-
-export default SidebarItem;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface TabItemProps {
   isSelected?: boolean;
@@ -26,7 +26,7 @@ interface Props {
   children: React.ReactElement | React.ReactElement[];
 }
 
-const Tabs = (props: Props) => {
+export const Tabs = (props: Props) => {
   return (
     <div className="flex justify-between">
       {React.Children.map(props.children, (child) => {
@@ -43,5 +43,3 @@ const Tabs = (props: Props) => {
     </div>
   );
 };
-
-export default Tabs;

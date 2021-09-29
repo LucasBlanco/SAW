@@ -1,21 +1,15 @@
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { Button } from "@vadiun/react-components";
 import React from "react";
-import Logo from "../../assets/logo.png";
 import SearchIcon from "@material-ui/icons/Search";
-import { useHistory } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import FaceIcon from "@material-ui/icons/Face";
-import CreateIcon from "@material-ui/icons/Create";
-import PostAddIcon from "@material-ui/icons/PostAdd";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
-import { useAuth } from "app/auth/services/AuthService";
+import { useAuthService } from "app/auth/services/AuthService";
 
 interface Props {
   toggleSidebar: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -39,10 +33,9 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-const Header = (props: Props) => {
+export const Header = (props: Props) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const history = useHistory();
-  const authService = useAuth();
+  const authService = useAuthService();
   const onOpenProfileMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -105,5 +98,3 @@ const Header = (props: Props) => {
     </>
   );
 };
-
-export default Header;

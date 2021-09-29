@@ -6,7 +6,7 @@ interface Props {
   toolbar?: React.ReactNode;
 }
 
-const PageHeader = (props: Props) => {
+export const PageHeader = (props: Props) => {
   return (
     <div className="bg-white px-8  flex justify-between items-center h-12">
       <div className="flex space-x-2 items-center">
@@ -17,4 +17,3 @@ const PageHeader = (props: Props) => {
     </div>
   );
 };
-export default PageHeader;

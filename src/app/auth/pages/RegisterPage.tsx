@@ -1,14 +1,12 @@
 import { TextField } from "@material-ui/core";
-import AuthLayout from "app/auth/components/AuthLayout";
+import { AuthLayout } from "app/auth/components";
 import React, { useState } from "react";
 import { Button } from "@vadiun/react-components";
 import { Stepper } from "@vadiun/react-components";
 import RegisterIlustration from "assets/sign-up.svg";
 import Logo from "assets/logo.png";
 
-interface Props {}
-
-const RegisterPage = (props: Props) => {
+export const RegisterPage = () => {
   const [step, setStep] = useState(1);
   return (
     <AuthLayout
@@ -132,5 +130,3 @@ const RegisterPage = (props: Props) => {
     </AuthLayout>
   );
 };
-
-export default RegisterPage;

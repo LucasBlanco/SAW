@@ -4,7 +4,7 @@ interface Props {
   value: any;
 }
 
-const Stepper: FC<Props> = (props) => {
+export const Stepper: FC<Props> = (props) => {
   return (
     <div className="flex flex-col md:flex-row justify-evenly">
       {React.Children.map(props.children, (child, index) => {
@@ -17,5 +17,3 @@ const Stepper: FC<Props> = (props) => {
     </div>
   );
 };
-
-export default Stepper;

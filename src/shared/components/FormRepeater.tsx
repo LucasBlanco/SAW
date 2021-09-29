@@ -11,7 +11,7 @@ interface Props {
   removeButton?: React.ReactNode;
 }
 
-const FormRepeater: FC<Props> = (props) => {
+export const FormRepeater: FC<Props> = (props) => {
   const baseRemoveButton = (index: number) => (
     <Button
       variant="light"
@@ -60,5 +60,3 @@ const FormRepeater: FC<Props> = (props) => {
     </>
   );
 };
-
-export default FormRepeater;

@@ -1,5 +1,5 @@
 import LinearProgress from "@material-ui/core/LinearProgress";
-import AuthLayout from "app/auth/components/AuthLayout";
+import { AuthLayout } from "app/auth/components";
 import React, { useEffect, useState } from "react";
 import VerifyEmailIlustration from "assets/verify-email.svg";
 import CheckIcon from "@material-ui/icons/Check";
@@ -10,9 +10,8 @@ import Logo from "assets/logo.png";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
-interface Props {}
 
-const VerifyEmailPage = (props: Props) => {
+export const VerifyEmailPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const params = useQuery();
   useEffect(() => {
@@ -53,5 +52,3 @@ const VerifyEmailPage = (props: Props) => {
     </AuthLayout>
   );
 };
-
-export default VerifyEmailPage;
