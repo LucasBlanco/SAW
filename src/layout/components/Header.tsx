@@ -52,14 +52,8 @@ export const Header = (props: Props) => {
           >
             <MenuIcon />
           </button>
-          <div className="relative mr-auto ml-10 hidden md:inline-flex">
-            <input
-              type="text"
-              className="rounded-full bg-gray-100 border-none outline-none h-8 p-4 pl-12 w-full"
-            />
-            <SearchIcon className="absolute left-3 top-1" />
-          </div>
-          <div className="flex gap-3 items-center">
+
+          <div className="flex gap-3 items-center ml-auto">
             <div
               className="text-primary-500 cursor-pointer"
               onClick={onOpenProfileMenu}
@@ -80,19 +74,11 @@ export const Header = (props: Props) => {
         }}
         getContentAnchorEl={null}
       >
-        <Link to="/main/profile">
-          <StyledMenuItem>
-            <ListItemIcon>
-              <FaceIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText primary="Profile" />
-          </StyledMenuItem>
-        </Link>
         <StyledMenuItem onClick={authService.logout}>
           <ListItemIcon>
             <FaceIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Exit" />
+          <ListItemText primary="Logout" />
         </StyledMenuItem>
       </Menu>
     </>

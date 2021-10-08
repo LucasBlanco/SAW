@@ -1,13 +1,13 @@
-export interface User {
-  permissions: Permission[];
-  email: string;
-  password: string;
-  id?: number;
+export enum UserRole {
+  ADMIN = "admin",
+  PUBLICATOR = "publicator",
+  VIEWER = "viewer",
 }
 
-export interface Permission {
-  name: string;
-  id: number;
+export interface User {
+  role: UserRole;
+  email: string;
+  id?: number;
 }
 
 export interface LoginCredentials {

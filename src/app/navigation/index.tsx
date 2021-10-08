@@ -1,3 +1,4 @@
+import { AuthNavigation } from "app/auth/navigation";
 import { useAuthService } from "app/auth/services";
 import { MainNavigation } from "app/main/navigation";
 import React from "react";
@@ -9,7 +10,7 @@ export const AppNavigation = (props: Props) => {
   const authService = useAuthService();
   return (
     <Switch>
-      <Route path="/auth" render={(props) => <MainNavigation />} />
+      <Route path="/auth" render={(props) => <AuthNavigation />} />
       {!authService.isAuthenticated && <Redirect to="/auth/login" />}
       <Route path="/main" render={(props) => <MainNavigation />} />
       <Redirect to="/main/landing" />

@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faUser,
-  faAngleDoubleLeft,
-  faUserAstronaut,
   faEllipsisH,
+  faListUl,
+  faPlusCircle,
+  faCheckCircle,
+  faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import Logo from "assets/logo.png";
 import { SidebarHeader, SidebarItem } from ".";
+import { useAuthService } from "app/auth/services";
+import { useSuperQuery } from "@vadiun/react-hooks";
+import { UserRole } from "app/auth/models";
 
 export type SideBarStatus =
   | {
@@ -37,6 +40,8 @@ const SidebarSection = ({ titulo, isCollapsed }: PropsSidebarSection) => {
 };
 
 export const Sidebar = ({ status, toggleCollapse }: Props) => {
+  const authSrv = useAuthService();
+  const userQuery = useSuperQuery(authSrv.getLoggedUser);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isTemporarilyExpanded, setIsTemporarilyExpanded] = useState(false);
   const history = useHistory();
@@ -80,6 +85,60 @@ export const Sidebar = ({ status, toggleCollapse }: Props) => {
     }
   };
 
+  let SideBarItems: React.ReactNode = null;
+  if (userQuery.data !== undefined && userQuery.data.role === UserRole.ADMIN) {
+    SideBarItems = (
+      <>
+        <SidebarItem
+          icon={<FontAwesomeIcon icon={faCheckCircle} size="1x" />}
+          label="Publicaciones pendientes"
+          isCollapsed={isCollapsed}
+          redirectTo="/main/publication/pending-approval"
+        />
+        <SidebarItem
+          icon={<FontAwesomeIcon icon={faUserAlt} size="1x" />}
+          label="Usuarios"
+          isCollapsed={isCollapsed}
+          redirectTo="/main/user/list"
+        />
+      </>
+    );
+  }
+  if (
+    userQuery.data !== undefined &&
+    userQuery.data.role === UserRole.PUBLICATOR
+  ) {
+    SideBarItems = (
+      <>
+        <SidebarItem
+          icon={<FontAwesomeIcon icon={faPlusCircle} size="1x" />}
+          label="Crear publicación"
+          isCollapsed={isCollapsed}
+          redirectTo="/main/publication/create"
+        />
+        <SidebarItem
+          icon={<FontAwesomeIcon icon={faListUl} size="1x" />}
+          label="Mis publicaciones"
+          isCollapsed={isCollapsed}
+          redirectTo="/main/publication/my-publications"
+        />
+      </>
+    );
+  }
+
+  if (userQuery.data !== undefined && userQuery.data.role === UserRole.VIEWER) {
+    SideBarItems = (
+      <>
+        <SidebarItem
+          icon={<FontAwesomeIcon icon={faListUl} size="1x" />}
+          label="Publicaciones"
+          isCollapsed={isCollapsed}
+          redirectTo="/main/publication/list"
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <div
@@ -92,54 +151,9 @@ export const Sidebar = ({ status, toggleCollapse }: Props) => {
           toggleCollapse={toggleCollapse}
           isCollapsed={isCollapsed}
           isMobile={status.platform === "mobile"}
-          logo={Logo}
+          logo={""}
         />
-        <SidebarItem
-          icon={<FontAwesomeIcon icon={faUser} size="1x" />}
-          label="Landing"
-          isCollapsed={isCollapsed}
-          redirectTo="/main/landing"
-        />
-        <SidebarItem
-          icon={<FontAwesomeIcon icon={faUser} size="1x" />}
-          label="Landing2"
-          isCollapsed={isCollapsed}
-        >
-          <SidebarItem
-            icon={<FontAwesomeIcon icon={faUser} size="1x" />}
-            label="Landing2"
-            isCollapsed={isCollapsed}
-          >
-            <SidebarItem
-              icon={<FontAwesomeIcon icon={faUser} size="1x" />}
-              label="Landing2"
-              isCollapsed={isCollapsed}
-              redirectTo="/main/landing"
-            />
-          </SidebarItem>
-        </SidebarItem>
-        <SidebarSection titulo="CUSTOM" isCollapsed={isCollapsed} />
-
-        <SidebarItem
-          icon={<FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />}
-          label="Example"
-          isSelected={selectedItem === "/main/example"}
-          redirectTo="/main/example"
-          isCollapsed={isCollapsed}
-        />
-        <SidebarItem
-          icon={<FontAwesomeIcon icon={faUserAstronaut} size="1x" />}
-          label="Profile"
-          isSelected={selectedItem === "/main/profile"}
-          redirectTo="/main/profile"
-          isCollapsed={isCollapsed}
-        />
-        <SidebarItem
-          icon={<FontAwesomeIcon icon={faUserAstronaut} size="1x" />}
-          label="Form"
-          isCollapsed={isCollapsed}
-          redirectTo="/main/forms"
-        />
+        {SideBarItems}
       </div>
     </>
   );
