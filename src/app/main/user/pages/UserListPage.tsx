@@ -22,7 +22,6 @@ export const UserListPage = () => {
             {usersQuery.data.map((user) => (
               <div className="p-8 shadow-md my-4">
                 <p className="text-bold">{user.email}</p>
-                <p className="text-gray-500">{user.role}</p>
               </div>
             ))}
           </div>

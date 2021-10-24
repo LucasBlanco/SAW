@@ -1,5 +1,5 @@
 const dev = {
-  backEnd: "https://jsonplaceholder.typicode.com/",
+  backEnd: "http://localhost:3001",
   production: false,
 };
 

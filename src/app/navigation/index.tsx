@@ -11,9 +11,8 @@ export const AppNavigation = (props: Props) => {
   return (
     <Switch>
       <Route path="/auth" render={(props) => <AuthNavigation />} />
-      {!authService.isAuthenticated && <Redirect to="/auth/login" />}
       <Route path="/main" render={(props) => <MainNavigation />} />
-      <Redirect to="/main/landing" />
+      <Redirect to="/main/publication" />
     </Switch>
   );
 };

@@ -1,12 +1,9 @@
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import React from "react";
-import SearchIcon from "@material-ui/icons/Search";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
-import FaceIcon from "@material-ui/icons/Face";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
 import { useAuthService } from "app/auth/services/AuthService";
@@ -62,25 +59,28 @@ export const Header = (props: Props) => {
             </div>
           </div>
         </div>
+
+        <Menu
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={() => setAnchorEl(null)}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          getContentAnchorEl={null}
+        >
+          <StyledMenuItem onClick={authService.logout}>
+            <ListItemText primary="Logout" />
+          </StyledMenuItem>
+          <Link to="/auth/login">
+            <StyledMenuItem onClick={authService.logout}>
+              <ListItemText primary="Login" />
+            </StyledMenuItem>
+          </Link>
+        </Menu>
       </div>
-      <Menu
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={() => setAnchorEl(null)}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        getContentAnchorEl={null}
-      >
-        <StyledMenuItem onClick={authService.logout}>
-          <ListItemIcon>
-            <FaceIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Logout" />
-        </StyledMenuItem>
-      </Menu>
     </>
   );
 };

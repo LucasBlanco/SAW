@@ -1,15 +1,14 @@
 import { useHistory } from "react-router-dom";
-import { LoginCredentials, User } from "../models/User";
+import { LoginCredentials } from "../models/User";
 import React, { useContext, useEffect, useState } from "react";
 import { useAuthRepository } from "./AuthRepository";
-import decode from "jwt-decode";
 
 export interface AuthContextType {
   isAuthenticated: boolean;
   login: (x: LoginCredentials) => Promise<string>;
   logout: () => void;
-  getLoggedUser: () => Promise<User>;
   loggedUserId: number | undefined;
+  isAdmin: boolean;
 }
 
 export const AuthContext = React.createContext({} as AuthContextType);
@@ -21,25 +20,34 @@ export const AuthProvider = (props: any) => {
   const history = useHistory();
   const authRepo = useAuthRepository();
   const [loggedUserId, setLoggedUserId] = useState<number | undefined>(
-    undefined
+    Number(localStorage.getItem("user_id")!)
   );
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   useEffect(() => {
     setIsAuthenticated(_isAuthenticated());
+    if (isAuthenticated) {
+      setLoggedUserId(Number(localStorage.getItem("user_id")));
+      setIsAdmin(localStorage.getItem("admin") === "true");
+    }
   }, []);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      const { user_id } = decode<{ user_id: number }>(
-        localStorage.getItem("token")!
-      );
-      setLoggedUserId(user_id);
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     const { id } = decode<{ id: number }>(localStorage.getItem("token")!);
+  //     setLoggedUserId(id);
+  //   }
+  // }, [isAuthenticated]);
 
   const login = async (x: LoginCredentials) => {
-    const { token } = await authRepo.login(x);
+    const { token, id, admin, session_id } = await authRepo.login(x);
+    debugger;
     localStorage.setItem("token", token);
+    localStorage.setItem("user_id", id);
+    localStorage.setItem("admin", admin === 0 ? "false" : "true");
+    localStorage.setItem("session_id", session_id);
+    setIsAdmin(admin === 1);
+    setLoggedUserId(id);
     setIsAuthenticated(true);
     history.push("/main/landing");
     return token;
@@ -48,14 +56,13 @@ export const AuthProvider = (props: any) => {
   const logout = () => {
     localStorage.setItem("token", "");
     setIsAuthenticated(false);
-    history.push("login");
   };
 
   const value: AuthContextType = {
     isAuthenticated,
+    isAdmin,
     login,
     logout,
-    getLoggedUser: () => authRepo.getLoggedUser(loggedUserId!),
     loggedUserId,
   };
   return <AuthContext.Provider value={value} {...props} />;

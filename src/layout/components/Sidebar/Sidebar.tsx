@@ -10,8 +10,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { SidebarHeader, SidebarItem } from ".";
 import { useAuthService } from "app/auth/services";
-import { useSuperQuery } from "@vadiun/react-hooks";
-import { UserRole } from "app/auth/models";
 
 export type SideBarStatus =
   | {
@@ -41,7 +39,7 @@ const SidebarSection = ({ titulo, isCollapsed }: PropsSidebarSection) => {
 
 export const Sidebar = ({ status, toggleCollapse }: Props) => {
   const authSrv = useAuthService();
-  const userQuery = useSuperQuery(authSrv.getLoggedUser);
+  //const userQuery = useSuperQuery(authSrv.getLoggedUser);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isTemporarilyExpanded, setIsTemporarilyExpanded] = useState(false);
   const history = useHistory();
@@ -86,7 +84,7 @@ export const Sidebar = ({ status, toggleCollapse }: Props) => {
   };
 
   let SideBarItems: React.ReactNode = null;
-  if (userQuery.data !== undefined && userQuery.data.role === UserRole.ADMIN) {
+  if (authSrv.isAuthenticated && authSrv.isAdmin) {
     SideBarItems = (
       <>
         <SidebarItem
@@ -104,10 +102,7 @@ export const Sidebar = ({ status, toggleCollapse }: Props) => {
       </>
     );
   }
-  if (
-    userQuery.data !== undefined &&
-    userQuery.data.role === UserRole.PUBLICATOR
-  ) {
+  if (authSrv.isAuthenticated && !authSrv.isAdmin) {
     SideBarItems = (
       <>
         <SidebarItem
@@ -126,7 +121,7 @@ export const Sidebar = ({ status, toggleCollapse }: Props) => {
     );
   }
 
-  if (userQuery.data !== undefined && userQuery.data.role === UserRole.VIEWER) {
+  if (!authSrv.isAuthenticated) {
     SideBarItems = (
       <>
         <SidebarItem

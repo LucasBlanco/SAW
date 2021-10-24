@@ -1,61 +1,19 @@
 import { UserRole } from "app/auth/models";
 import { useAuthService } from "app/auth/services";
+import { httpClient } from "shared/services/http/httpClient";
 import {
+  publicationBuilder,
   PublicationFormType,
   PublicationModel,
   PublicationStatus,
 } from "../models/PublicationModel";
 
-let publications: PublicationModel[] = [
-  {
-    status: PublicationStatus.APPROVED,
-    name: "Publicacion 1",
-    description: "Descripcion de publicacion 1",
-    id: 1,
-    user: {
-      email: "email@email.com",
-      role: UserRole.PUBLICATOR,
-      id: 1,
-    },
-  },
-  {
-    status: PublicationStatus.APPROVED,
-    name: "Publicacion 2",
-    description: "Descripcion de publicacion 2",
-    id: 2,
-    user: {
-      email: "email@email.com",
-      role: UserRole.PUBLICATOR,
-      id: 1,
-    },
-  },
-  {
-    status: PublicationStatus.APPROVED,
-    name: "Publicacion 3",
-    description: "Descripcion de publicacion 3",
-    id: 3,
-    user: {
-      email: "email@email.com",
-      role: UserRole.PUBLICATOR,
-      id: 1,
-    },
-  },
-  {
-    status: PublicationStatus.PENDING,
-    name: "Publicacion 3",
-    description: "Descripcion de publicacion 3",
-    id: 3,
-    user: {
-      email: "email@email.com",
-      role: UserRole.PUBLICATOR,
-      id: 1,
-    },
-  },
-];
-
 export const usePublicationRepository = () => {
   const authSrv = useAuthService();
-  const getAll = async (): Promise<PublicationModel[]> => publications;
+  const getAll = async (): Promise<PublicationModel[]> => {
+    const res = await httpClient.get("publicaciones");
+    return res.map(publicationBuilder.fromBackend);
+  };
 
   const getAllApproved = async (): Promise<PublicationModel[]> => {
     return (await getAll()).filter(
@@ -64,15 +22,10 @@ export const usePublicationRepository = () => {
   };
 
   const create = async (pub: PublicationFormType) => {
-    publications.push({
-      ...pub,
-      id: Math.random(),
-      status: PublicationStatus.PENDING,
-      user: {
-        email: "email@email.com",
-        role: UserRole.PUBLICATOR,
-        id: 1,
-      },
+    return httpClient.post("publicaciones", {
+      nombre: pub.name,
+      descripcion: pub.description,
+      usuario_id: authSrv.loggedUserId,
     });
   };
 
@@ -87,9 +40,9 @@ export const usePublicationRepository = () => {
   };
 
   const approve = async (id: number) => {
-    publications = publications.map((p) =>
-      p.id === id ? { ...p, status: PublicationStatus.APPROVED } : p
-    );
+    return httpClient.patch(`publicaciones/${id}/cambiarEstado`, {
+      estado: PublicationStatus.APPROVED,
+    });
   };
 
   return {

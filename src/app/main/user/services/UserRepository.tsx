@@ -1,26 +1,13 @@
-import { User, UserRole } from "app/auth/models";
-
-export const PUBLICATOR_USER: User = {
-  email: "publicator@publicator.com",
-  role: UserRole.PUBLICATOR,
-  id: 1,
-};
-export const VIEWER_USER: User = {
-  email: "viewer@viewer.com",
-  role: UserRole.VIEWER,
-  id: 2,
-};
-export const ADMIN_USER: User = {
-  email: "admin@admin.com",
-  role: UserRole.ADMIN,
-  id: 3,
-};
-
-export const USERS: User[] = [PUBLICATOR_USER, VIEWER_USER, ADMIN_USER];
+import { User } from "app/auth/models";
+import { httpClient } from "shared/services/http/httpClient";
 
 export const useUserRepository = () => {
   const getAll = async (): Promise<User[]> => {
-    return USERS;
+    const res = await httpClient.get("usuarios");
+    return res.map((u) => ({
+      id: u.id,
+      email: u.nombre,
+    }));
   };
 
   return {

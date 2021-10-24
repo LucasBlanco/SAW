@@ -10,11 +10,11 @@ import { UserRole } from "app/auth/models";
 
 export const PublicationNavigation = () => {
   const authSrv = useAuthService();
-  const userQuery = useSuperQuery(authSrv.getLoggedUser);
+  //const userQuery = useSuperQuery(authSrv.getLoggedUser);
   let { path } = useRouteMatch();
 
   let AllowedRoutes: React.ReactNode = null;
-  if (userQuery.data !== undefined && userQuery.data.role === UserRole.ADMIN) {
+  if (authSrv.isAuthenticated && authSrv.isAdmin) {
     AllowedRoutes = (
       <>
         <Route path={`${path}/pending-approval`}>
@@ -23,10 +23,7 @@ export const PublicationNavigation = () => {
       </>
     );
   }
-  if (
-    userQuery.data !== undefined &&
-    userQuery.data.role === UserRole.PUBLICATOR
-  ) {
+  if (authSrv.isAuthenticated && !authSrv.isAdmin) {
     AllowedRoutes = (
       <>
         <Route path={`${path}/my-publications`}>
@@ -39,7 +36,7 @@ export const PublicationNavigation = () => {
     );
   }
 
-  if (userQuery.data !== undefined && userQuery.data.role === UserRole.VIEWER) {
+  if (!authSrv.isAuthenticated) {
     AllowedRoutes = (
       <>
         <Route path={`${path}/list`}>
