@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@material-ui/core";
 import { AuthProvider } from "app/auth/services/AuthService";
 import {
   MessageProvider,
@@ -17,7 +17,7 @@ import { AppNavigation } from "app/navigation";
 moment.locale("es");
 
 function App() {
-  const theme = createMuiTheme({
+  const theme = createTheme({
     typography: {
       fontFamily: `"Poppins", sans-serif`,
     },

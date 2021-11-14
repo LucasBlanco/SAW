@@ -9,6 +9,7 @@ import { usePublicationRepository } from "../services/PublicationRepository";
 import * as Yup from "yup";
 import { useHistory } from "react-router";
 import { PublicationFormType } from "../models/PublicationModel";
+import { text } from "@fortawesome/fontawesome-svg-core";
 
 const initialValues = {
   name: "",
@@ -26,11 +27,15 @@ export const PublicationCreatePage = () => {
     history.push("/main/publication/my-publications");
   };
 
+  const [text, setText] = React.useState("")
+
   return (
     <PageContainer>
       <div className="flex-1">
         <Card title="Crear publicacion">
           <div className="p-8">
+          <textarea value={text} onChange={e => setText(e.target.value)}/>
+          <div dangerouslySetInnerHTML={{ __html: text}}></div>
             <Formik
               initialValues={initialValues}
               onSubmit={create}
