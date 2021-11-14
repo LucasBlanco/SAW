@@ -32,7 +32,7 @@ export const PublicationPendingApprovalPage = () => {
             {publicationQuery.data.map((pub) => (
               <div className="p-8 shadow-md my-4">
                 <p className="text-bold">{pub.name}</p>
-                <p className="text-gray-500">{pub.description}</p>
+                <div dangerouslySetInnerHTML={{ __html: pub.description}}></div>
                 <Button
                   onClick={() => approve(pub.id)}
                   variant="light"
