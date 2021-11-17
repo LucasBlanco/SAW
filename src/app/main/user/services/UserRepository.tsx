@@ -10,7 +10,16 @@ export const useUserRepository = () => {
     }));
   };
 
+  const getUserByName = async (name: string): Promise<User[]> => {
+    const res = await httpClient.get("usuarios/" + name);
+    return res.map((u) => ({
+      id: u.id,
+      email: u.nombre,
+    }));
+  };
+
   return {
     getAll,
+    getUserByName,
   };
 };
