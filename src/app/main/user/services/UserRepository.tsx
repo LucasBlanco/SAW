@@ -11,7 +11,7 @@ export const useUserRepository = () => {
   };
 
   const getUserByName = async (name: string): Promise<User[]> => {
-    const res = await httpClient.get("usuarios/" + name);
+    const res = await httpClient.get("usuarios?email=" + name);
     return res.map((u) => ({
       id: u.id,
       email: u.nombre,
